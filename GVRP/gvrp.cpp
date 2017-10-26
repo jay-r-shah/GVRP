@@ -2,18 +2,15 @@
 #include <math.h>
 ILOSTLBEGIN
 
-typedef IloArray<IloNumVarArray>     IloNumVarArray2;
-
 bool checkExistence(IloNumArray array, int val);
 
 int main(int argc, char **argv) {
 	IloEnv env;
 	try {
-		IloInt m = 3;
-		IloInt Q = 25;
+		IloInt m = 4;
+		IloInt Q = 15;
 		string formulation = "node";
-		float maxTime = 10;
-		int maxSols = 25;
+		float maxTime = 10*60;
 		float objLim = 0;
 
 		string filename = "GVRP";
@@ -29,7 +26,6 @@ int main(int argc, char **argv) {
 		IloModel mod(env);
 
 		file >> xy >> V;
-		// int i = V.getSize();
 		IloInt nCustomers = xy.getSize();
 		IloInt nClusters = V.getSize();
 		for (int i = 0; i < nClusters; ++i)
@@ -37,8 +33,7 @@ int main(int argc, char **argv) {
 			q.add(V[i].getSize());
 		}
 		q[0] = 0;
-		// cout << q << "\n";
-		// cout << nCustomers << "\n"; 
+
 		for (int i = 0; i < nCustomers; ++i)
 		{
 			IloNumArray rowdist(env);
@@ -53,7 +48,7 @@ int main(int argc, char **argv) {
 		typedef IloArray<IloNumVarArray> NumVarMatrix;
 		typedef IloArray<IloBoolVarArray> BoolVarMatrix;
 		BoolVarMatrix x(env, nCustomers);
-		// IloInt i;
+
 		for(int i = 0; i < nCustomers; i++){
 			x[i] = IloBoolVarArray(env, nCustomers);
 		}
@@ -329,7 +324,7 @@ int main(int argc, char **argv) {
 		ofstream logfile;
 		string logFileName = "GVRPLogFile";
 		logfile.open("../../"+logFileName+".txt",std::ios_base::app);
-		logfile << "NODE "<< filename << " OBJ " << cplex.getObjValue() << " RUNTIME " << runtime;
+		logfile << "NODE "<< filename << " OBJ " << cplex.getObjValue() << " RUNTIME " << runtime << " RELGAP " << cplex.getMIPRelativeGap();
 		logfile << " nCust " << nCustomers << " nClusters " << nClusters << " nVehicles "<< m << " nRows " << cplex.getNrows();
 		logfile <<  " TIMELIM " << maxTime << " OBJLIM " << objLim << endl;
 		cout << "Log file: " << logFileName << endl;
