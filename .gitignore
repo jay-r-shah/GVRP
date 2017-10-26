@@ -1,0 +1,10 @@
+*.lp
+*.o
+*.exe
+*.zip
+*.mps
+.idea/
+.vscode/
+.vs/
+GVRP/mybuild/
+GVRP_Flow/mybuild/
