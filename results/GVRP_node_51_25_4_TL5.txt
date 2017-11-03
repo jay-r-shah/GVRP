@@ -1,20 +1,17 @@
 Sol GVRP with 51 customers and 4 vehicles
-0 14 
 0 27 
-0 30 
-0 41 
 1 39 
 4 5 
 5 4 
 6 17 
 13 33 
-14 0 
+14 30 
 17 6 
-24 47 
+24 41 
 25 34 
 26 40 
 27 0 
-30 0 
+30 14 
 32 36 
 33 13 
 34 25 
@@ -22,10 +19,10 @@ Sol GVRP with 51 customers and 4 vehicles
 38 50 
 39 1 
 40 26 
-41 0 
+41 47 
 44 49 
 47 24 
 49 44 
 50 38 
-Cost 398.522
+Cost 329.715
 DataFile GVRP

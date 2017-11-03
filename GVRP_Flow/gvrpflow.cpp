@@ -310,7 +310,7 @@ int main(int argc, char **argv) {
 		cout << "Results printed to :" << resultsFilename << endl; 
 		ofstream fout(resultsFilename, ios::out);
 		fout <<"Sol ";
-		fout << "GVRP with " << to_string(nCustomers) << " customers and " << to_string(m) << " vehicles" << endl;
+		fout << "GVRP with " << to_string(nCustomers - 1) << " customers and " << to_string(m) << " vehicles" << endl;
 		for (int i = 0; i < nCustomers; ++i)
 		{
 			for (int j = 0; j < nCustomers; ++j)

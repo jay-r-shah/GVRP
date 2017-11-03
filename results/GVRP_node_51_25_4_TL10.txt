@@ -1,4 +1,4 @@
-Sol GVRP with 50 customers and 4 vehicles
+Sol GVRP with 51 customers and 4 vehicles
 0 7 
 0 14 
 0 32 

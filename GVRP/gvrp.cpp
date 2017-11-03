@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
 		IloInt m = 4;
 		IloInt Q = 15;
 		string formulation = "node";
-		float maxTime = 10*60;
+		float maxTime = 2*60*60;
 		float objLim = 0;
 
 		string filename = "GVRP";
@@ -270,16 +270,16 @@ int main(int argc, char **argv) {
 		for (int p = 1; p < nClusters; ++p)
 		{
 			for (int r = 1; r < nClusters; ++r)
-			{
-				if (p!=r)
-				{
-					IloExpr subtour(env);
-					subtour += u[p] - u[r] + Q*w[p][r] + (Q - q[p] - q[r]) * w[r][p] - Q + q[r];
-					mod.add(subtour <= 0);
-					subtour.end();
-				}
-			}
-		}
+		 	{
+		 		if (p!=r)
+		 		{
+		 			IloExpr subtour(env);
+		 			subtour += u[p] - u[r] + Q*w[p][r] + (Q - q[p] - q[r]) * w[r][p] - Q + q[r];
+		 			mod.add(subtour <= 0);
+		 			subtour.end();
+		 		}
+		 	}
+		 }
 
 		int NUM_THREADS = 4;
 		IloCplex cplex(mod);
@@ -306,7 +306,7 @@ int main(int argc, char **argv) {
 		cout << "Results printed to :" << resultsFilename << endl; 
 		ofstream fout(resultsFilename, ios::out);
 		fout <<"Sol ";
-		fout << "GVRP with " << to_string(nCustomers) << " customers and " << to_string(m) << " vehicles" << endl;
+		fout << "GVRP with " << to_string(nCustomers - 1) << " customers and " << to_string(m) << " vehicles" << endl;
 		for (int i = 0; i < nCustomers; ++i)
 		{
 			for (int j = 0; j < nCustomers; ++j)
