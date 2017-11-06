@@ -7,13 +7,13 @@ bool checkExistence(IloNumArray array, int val);
 int main(int argc, char **argv) {
 	IloEnv env;
 	try {
-		IloInt m = 4;
-		IloInt Q = 15;
+		IloInt m = 6; // Number of vehicles
+		IloInt Q = 150; // Max capacity of each vehicle
 		string formulation = "flow";
-		float maxTime = 10*60;
+		float maxTime = 4*60*60;
 		float objLim = 0;
 
-		string filename = "GVRP";
+		string filename = "A-n65-k9-c28";
 		string filepath =  "../../data/" + filename + ".dat"; 
 		if (argc >= 2) filepath = argv[1];
 		ifstream file(filepath);
@@ -25,15 +25,14 @@ int main(int argc, char **argv) {
 		IloNumArray q(env);
 		IloModel mod(env);
 
-		file >> xy >> V;
+		file >> xy >> V >> q;
 		IloInt nCustomers = xy.getSize();
 		IloInt nClusters = V.getSize();
-		for (int i = 0; i < nClusters; ++i)
-		{
-			q.add(V[i].getSize());
-		}
-		q[0] = 0;
-
+		// for (int i = 0; i < nClusters; ++i)
+		// {
+		// 	q.add(V[i].getSize());
+		// }
+		// q[0] = 0;
 		for (int i = 0; i < nCustomers; ++i)
 		{
 			IloNumArray rowdist(env);
@@ -310,7 +309,7 @@ int main(int argc, char **argv) {
 		cout << "Results printed to :" << resultsFilename << endl; 
 		ofstream fout(resultsFilename, ios::out);
 		fout <<"Sol ";
-		fout << "GVRP with " << to_string(nCustomers - 1) << " customers and " << to_string(m) << " vehicles" << endl;
+		fout << "GVRP with " << to_string(nCustomers - 1) << " customers, " << to_string(nClusters - 1) << " clusters and " << to_string(m) << " vehicles" << endl;
 		for (int i = 0; i < nCustomers; ++i)
 		{
 			for (int j = 0; j < nCustomers; ++j)
