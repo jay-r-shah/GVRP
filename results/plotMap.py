@@ -91,8 +91,6 @@ def plotCoords(solFileName):
             ellipse1 = mpatches.Ellipse((x0,y0), xDist, yDist,np.rad2deg(angle),fill = False)
             ax.add_artist(ellipse1)
     
-#    filename2 = "solution.txt"
-    
     resFileName = solFileName[solFileName.rfind("/")+1:]
     solData = np.array(solData)
     ax.set_title(title + "\n Cost = " + cost)
@@ -103,10 +101,8 @@ def plotCoords(solFileName):
         x2 = xy[node2][0] ; y2 = xy[node2][1]
         ax.plot([x1,x2],[y1,y2],'b')
     plt.tight_layout()
-    fig.savefig("images/"+resFileName+'.png', dpi=DPI, bbox_inches='tight')
+    fig.savefig("images/"+resFileName[:-4]+'.png', dpi=DPI, bbox_inches='tight')
 
-#def plotClusters(data):
-    
 #####################################################################################################################
 def readArgs():
     """
@@ -131,10 +127,3 @@ if __name__ == "__main__":
     else:
         print("Usage:  plotMap.py <path to solutionData>")
         exit(5)
-
-#filename = "data/GVRP.dat"
-#filename2 = "solution_51_25.txt"
-
-#plotCoords(filename,filename2)
-
-#data2 = parseSolution(filename2)
