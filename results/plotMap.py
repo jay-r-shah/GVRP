@@ -12,8 +12,6 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import sys
 import math
-from scipy.spatial import ConvexHull
-
 #LABEL_SIZE = 7
 DPI = 300
 MARGIN = 0.02
@@ -49,7 +47,7 @@ def plotCoords(solFileName):
     ax = fig.add_subplot(111)
     for i in range(len(xy)):
         ax.plot(xy[i,0],xy[i,1],"*b")
-        ax.text(xy[i,0]+1,xy[i,1]-1,str(i))
+        # ax.text(xy[i,0]+1,xy[i,1]-1,str(i))
     clusters = np.array(data[1])
     depot = [xy[clusters[0],0],xy[clusters[0],1]]
     ax.add_patch(mpatches.Rectangle((depot[0] - 3, depot[1] -3), 6, 6, fill=False))
@@ -88,6 +86,8 @@ def plotCoords(solFileName):
             angle = math.atan(slope)
             xDist = 2*(x2 - x1)/math.cos(angle)
             yDist = 2*(y2 - y1)*math.cos(angle)
+            if yDist == 0:
+                yDist = 0.5*(xDist+5)
             ellipse1 = mpatches.Ellipse((x0,y0), xDist, yDist,np.rad2deg(angle),fill = False)
             ax.add_artist(ellipse1)
     
