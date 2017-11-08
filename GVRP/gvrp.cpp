@@ -7,13 +7,13 @@ bool checkExistence(IloNumArray array, int val);
 int main(int argc, char **argv) {
 	IloEnv env;
 	try {
-		IloInt m = 4;
-		IloInt Q = 15;
-		string formulation = "node";
-		float maxTime = 2*60*60;
-		float objLim = 0;
+		IloInt m = 6; // Number of vehicles
+		IloInt Q = 15; // Max capacity of each vehicle
+		string formulation = "flow"; // "flow" or "node"
+		float maxTime = 2*60; // time limit in seconds
+		float objLim = 0; // stop before this number is reached
 
-		string filename = "GVRP";
+		string filename = "GVRP2";
 		string filepath =  "../../data/" + filename + ".dat"; 
 		if (argc >= 2) filepath = argv[1];
 		ifstream file(filepath);
@@ -218,116 +218,212 @@ int main(int argc, char **argv) {
 
 		/*Node based formulation:*/
 		IloNumVarArray u(env);
-		for (int p = 0; p < nClusters; ++p)
+		if (formulation=="node")
 		{
-			u.add(IloNumVar(env,0.0, Q, ILOFLOAT));
-		}
+			for (int p = 0; p < nClusters; ++p)
+			{
+				u.add(IloNumVar(env,0.0, Q, ILOFLOAT));
+			}
 
-		// Constraint 9
-		for (int p = 1; p < nClusters; ++p)
+			// Constraint 9
+			for (int p = 1; p < nClusters; ++p)
+			{
+				IloExpr cBounding(env);
+				cBounding += u[p] - q[p];
+				for (int r = 0; r < nClusters; ++r)
+				{
+					if (r!=p)
+					{
+						cBounding += - q[r] * w[r][p];
+					}
+				}
+				mod.add(cBounding >= 0);
+				cBounding.end();
+			}
+
+
+			// Constraint 10
+			for (int p = 1; p < nClusters; ++p)
+			{
+				IloExpr cBounding2(env);
+				cBounding2 += u[p] + (Q- q[p])*w[0][p] - Q;
+
+				mod.add(cBounding2 <= 0);
+				cBounding2.end();
+			}
+
+			// Constraint 11
+			for (int p = 1; p < nClusters; ++p)
+			{
+				IloExpr cBounding3(env);
+				cBounding3 += u[p] - Q;
+				for (int r = 0; r < nClusters; ++r)
+				{
+					if (r != p)
+					{
+						cBounding3 += q[r] * w[p][r];
+					}
+				}
+				mod.add(cBounding3 <= 0);
+				cBounding3.end();
+			}
+
+			// Constraint 12
+			for (int p = 1; p < nClusters; ++p)
+			{
+				for (int r = 1; r < nClusters; ++r)
+			 	{
+			 		if (p!=r)
+			 		{
+			 			IloExpr subtour(env);
+			 			subtour += u[p] - u[r] + Q*w[p][r] + (Q - q[p] - q[r]) * w[r][p] - Q + q[r];
+			 			mod.add(subtour <= 0);
+			 			subtour.end();
+			 		}
+			 	}
+			 }
+		} 
+
+		NumVarMatrix y(env, nClusters);
+		if (formulation=="flow")
 		{
-			IloExpr cBounding(env);
-			cBounding += u[p] - q[p];
+			for(int i = 0; i < nClusters; i++){
+				y[i] = IloNumVarArray(env, nClusters, 0, IloInfinity, ILOFLOAT);
+			}
+
+			// Constraint 13 & 14
 			for (int r = 0; r < nClusters; ++r)
 			{
-				if (r!=p)
+				for (int p = 0; p < nClusters; ++p)
 				{
-					cBounding += - q[r] * w[r][p];
-				}
+					if (p!=r)
+					{
+						mod.add(y[r][p] - (Q - q[p])*w[r][p] <= 0);
+						mod.add(y[r][p] - q[r]*w[r][p] >= 0);
+					}
+				}	
 			}
-			mod.add(cBounding >= 0);
-			cBounding.end();
-		}
 
-
-		// Constraint 10
-		for (int p = 1; p < nClusters; ++p)
-		{
-			IloExpr cBounding2(env);
-			cBounding2 += u[p] + (Q- q[p])*w[0][p] - Q;
-
-			mod.add(cBounding2 <= 0);
-			cBounding2.end();
-		}
-
-		// Constraint 11
-		for (int p = 1; p < nClusters; ++p)
-		{
-			IloExpr cBounding3(env);
-			cBounding3 += u[p] - Q;
-			for (int r = 0; r < nClusters; ++r)
+			// Constraint 15
+			IloExpr sumFlow(env);
+			for (int p = 1; p < nClusters; ++p)
 			{
-				if (r != p)
-				{
-					cBounding3 += q[r] * w[p][r];
-				}
+				sumFlow += y[p][0];
 			}
-			mod.add(cBounding3 <= 0);
-			cBounding3.end();
-		}
+			for (int p = 1; p < nClusters; ++p)
+			{
+				sumFlow += -q[p];
+			}
+			mod.add(sumFlow == 0);
+			sumFlow.end();
 
-		// Constraint 12
-		for (int p = 1; p < nClusters; ++p)
-		{
-			for (int r = 1; r < nClusters; ++r)
-		 	{
-		 		if (p!=r)
-		 		{
-		 			IloExpr subtour(env);
-		 			subtour += u[p] - u[r] + Q*w[p][r] + (Q - q[p] - q[r]) * w[r][p] - Q + q[r];
-		 			mod.add(subtour <= 0);
-		 			subtour.end();
-		 		}
-		 	}
-		 }
+			// Constraint 16
+			for (int r = 1 ; r < nClusters; ++r)
+			{
+				IloExpr flowCon(env);
+				for (int p = 0; p < nClusters; ++p)
+				{
+					if (p!=r)
+					{
+						flowCon += y[r][p];
+					}
+				}
+				for (int p = 0; p < nClusters; ++p)
+				{
+					if (p!=r)
+					{
+						flowCon += -y[p][r];
+					}
+				}
+				flowCon += - q[r];
+				mod.add(flowCon == 0);
+				flowCon.end();
+			}
+
+			for (int p = 0; p < nClusters; ++p)
+			{
+				mod.add(y[0][p] == 0);
+			}
+
+			for (int p = 0; p < nClusters; ++p)
+			{
+				for (int r = 0; r < nClusters; ++r)
+				{
+					if (q[p] + q[r] > Q)
+					{
+						mod.add(w[p][r] == 0);
+					}
+				}
+			}		
+		}
 
 		int NUM_THREADS = 4;
 		IloCplex cplex(mod);
 		cplex.setParam(IloCplex::Param::TimeLimit, maxTime);
 		cplex.setParam(IloCplex::Param::Threads, NUM_THREADS);
 		IloNum timebef = cplex.getTime();
-		bool foundFeasibleSolution = cplex.solve();
-		float runtime = double((cplex.getTime() - timebef)/NUM_THREADS);
-		env.out() << "Solution Status: " << cplex.getStatus() << endl;
-		env.out() << endl << "Total Cost = " << cplex.getObjValue() << endl;
-		env.out() << "Number of constraints: " << cplex.getNrows() << endl;
-		env.out() << "Nodes: " << cplex.getNnodes() << endl;
-		env.out() << "Run time: " << runtime << endl;
+		if (cplex.solve())
+		{
+			float runtime = double((cplex.getTime() - timebef)/NUM_THREADS);
+			env.out() << "Solution Status: " << cplex.getStatus() << endl;
+			env.out() << endl << "Total Cost = " << cplex.getObjValue() << endl;
+			env.out() << "Number of constraints: " << cplex.getNrows() << endl;
+			env.out() << "Nodes: " << cplex.getNnodes() << endl;
+			env.out() << "Run time: " << runtime << endl;
 
-		string resultsFilename;
-		resultsFilename += "../../results/"+filename+"_node_" + to_string(nCustomers) + "_" + to_string(nClusters) + "_" +  to_string(m)+ "_";
-		if (objLim > 0)
-		{
-			int valObj = floor(objLim);
-			resultsFilename += "OL" + to_string(valObj) + "_";
-		}
-		int valTime = floor(maxTime/60);
-		resultsFilename += "TL" + to_string(valTime) + ".txt";
-		cout << "Results printed to :" << resultsFilename << endl; 
-		ofstream fout(resultsFilename, ios::out);
-		fout <<"Sol ";
-		fout << "GVRP with " << to_string(nCustomers - 1) << " customers, " << to_string(nClusters - 1) << " clusters and " << to_string(m) << " vehicles" << endl;
-		for (int i = 0; i < nCustomers; ++i)
-		{
-			for (int j = 0; j < nCustomers; ++j)
+			string resultsFilename;
+			resultsFilename += "../../results/"+filename+"_"+formulation+"_n" + to_string(nCustomers) + "_k" + to_string(nClusters) + "_m" +  to_string(m) + "_Q" +  to_string(Q) + "_";
+			if (objLim > 0)
 			{
-				if (cplex.getValue(x[i][j]) > 0.9)
+				int valObj = floor(objLim);
+				resultsFilename += "OL" + to_string(valObj) + "_";
+			}
+			int valTime = floor(maxTime/60);
+			resultsFilename += "TL" + to_string(valTime) + ".txt";
+			cout << "relGap = " << to_string(cplex.getMIPRelativeGap()*100) << " % " << endl;
+			cout << "Results printed to :" << resultsFilename << endl; 
+			ofstream fout(resultsFilename, ios::out);
+			fout <<"Sol ";
+			fout << "GVRP with " << to_string(nCustomers - 1) << " customers, " << to_string(nClusters - 1) << " clusters and " << to_string(m) << " vehicles" << endl;
+			for (int i = 0; i < nCustomers; ++i)
+			{
+				for (int j = 0; j < nCustomers; ++j)
 				{
-					fout << i << " " << j << " " << endl;
+					if (cplex.getValue(x[i][j]) > 0.9)
+					{
+						fout << i << " " << j << " " << endl;
+					}
 				}
 			}
-		}
-		fout << "Cost " << cplex.getObjValue() << endl;
-		fout << "DataFile " << filename;
-		fout.close();
+			fout << "Cost " << cplex.getObjValue() << endl;
+			fout << "Gap " << cplex.getMIPRelativeGap() << endl;
+			fout << "DataFile " << filename;
+			fout.close();
 
-		ofstream logfile;
-		string logFileName = "GVRPLogFile";
-		logfile.open("../../"+logFileName+".txt",std::ios_base::app);
-		logfile << "NODE "<< filename << " OBJ " << cplex.getObjValue() << " RUNTIME " << runtime << " RELGAP " << cplex.getMIPRelativeGap();
-		logfile << " nCust " << nCustomers << " nClusters " << nClusters << " nVehicles "<< m << " nRows " << cplex.getNrows();
-		logfile <<  " TIMELIM " << maxTime << " OBJLIM " << objLim << endl;
-		cout << "Log file: " << logFileName << endl;
+			ofstream logfile;
+			string logFileName = "GVRPLogFile";
+			logfile.open("../../"+logFileName+".txt",std::ios_base::app);
+			logfile << formulation << " " << filename << " STATUS " << cplex.getStatus() << " OBJ " << cplex.getObjValue() << " RUNTIME " << runtime << " RELGAP " << cplex.getMIPRelativeGap();
+			logfile << " nCust " << nCustomers << " nClusters " << nClusters << " nVehicles "<< m << " vehicleCap " << Q ;
+			logfile << " nRows " << cplex.getNrows();
+			logfile <<  " TIMELIM " << maxTime << " OBJLIM " << objLim << endl;
+			cout << "Log file: " << logFileName << endl;
+		} else {
+			float runtime = double((cplex.getTime() - timebef)/NUM_THREADS);
+			env.out() << "Solution Status: " << cplex.getStatus() << endl;
+			env.out() << "Number of constraints: " << cplex.getNrows() << endl;
+			env.out() << "Nodes: " << cplex.getNnodes() << endl;
+			env.out() << "Run time: " << runtime << endl;
+
+			ofstream logfile;
+			string logFileName = "GVRPLogFile";
+			logfile.open("../../"+logFileName+".txt",std::ios_base::app);
+			logfile << formulation << " " << filename << " STATUS " << cplex.getStatus() << " RUNTIME " << runtime;
+			logfile << " nCust " << nCustomers << " nClusters " << nClusters << " nVehicles "<< m << " vehicleCap " << Q ;
+			logfile << " nRows " << cplex.getNrows();
+			logfile <<  " TIMELIM " << maxTime << " OBJLIM " << objLim << endl;
+			cout << "Log file: " << logFileName << endl;
+		}
 	}
 	catch (IloException& ex) {
       cerr << "Error: " << ex << endl;
