@@ -13,7 +13,7 @@ import matplotlib.patches as mpatches
 import sys
 import math
 
-N = 28
+N = 75
 
 def parseData(filename):
     nodes = [];
@@ -155,4 +155,4 @@ def createData(CVRPdatafile):
             ellipse1 = mpatches.Ellipse((x0,y0), xDist, yDist,np.rad2deg(angle),fill = False)
             ax.add_artist(ellipse1)
 
-createData('A-n65-k9.dat')
+createData('E-n76-k8.dat')
