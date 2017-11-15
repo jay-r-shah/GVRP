@@ -5,10 +5,11 @@
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Cluster degree constraints}{subsection.3.1}% 5
 \BOOKMARK [3][-]{subsubsection.3.1.2}{Cluster connectivity constraints}{subsection.3.1}% 6
 \BOOKMARK [2][-]{subsection.3.2}{Node-based formulation}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Implementation}{}% 8
-\BOOKMARK [1][-]{section.5}{Test examples}{}% 9
-\BOOKMARK [2][-]{subsection.5.1}{Example 1}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.2}{Example 2}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.3}{Example 3 - Oregonator reaction}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.4}{Example 4 - Photochemical smog model}{section.5}% 13
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 14
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Capacity bounding constraints}{subsection.3.2}% 8
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Subtour elimination constraints}{subsection.3.2}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Flow-based formulation}{section.3}% 10
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Capacity bounding and subtour elimination constraints}{subsection.3.3}% 11
+\BOOKMARK [1][-]{section.4}{Test examples}{}% 12
+\BOOKMARK [2][-]{subsection.4.1}{Generation of additional test examples}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Computational study}{}% 14
+\BOOKMARK [2][-]{subsection.5.1}{Tightness of root node relaxation}{section.5}% 15

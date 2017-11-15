@@ -178,15 +178,13 @@
 
 \section{Introduction}
 
-Several real world situations can be modeled as a GVRP and its special cases. The post-box collection problem described in \citep{Laporte1996} becomes an assymetric GVRP if one or more vehicles are used. The distribution of goods by sea in an archipelago as in Phillippines, New Zealand, Italy, Greece etc. can also be modeled as a GVRP by selecting a number of potential harbors for each island and a fleet of ships is required to visit exactly one harbor for each island.
-
-All calculations were done on a Windows PC with an Intel i7 processor (2.90 GHz).
+Several real world situations can be modeled as a GVRP and its special cases. The post-box collection problem described in \citep{Laporte1996} becomes an asymmetric GVRP if one or more vehicles are used. The distribution of goods by sea in an archipelago as in Philippines, New Zealand, Italy, Greece etc. can also be modeled as a GVRP by selecting a number of potential harbors for each island and a fleet of ships is required to visit exactly one harbor for each island.
 
 \section{Definition of the GVRP}
 
-Let $G = (V,A)$ be a directed graph with $V = \{0,1,2,\ldots,n\}$ as the set of vertices and $A = \{(i,j)|i , j \in V , i \ne j\}$ as the set of arcs. A non-negative cost $c_{ij}$ is associated with wach arc $(i,j) \in A$.
+Let $G = (V,A)$ be a directed graph with $V = \{0,1,2,\ldots,n\}$ as the set of vertices and $A = \{(i,j)|i , j \in V , i \ne j\}$ as the set of arcs. A non-negative cost $c_{ij}$ is associated with each arc $(i,j) \in A$.
 
-The set of vertices $V$ is partitioned into $k + 1$ mutually exclusive subsets (clusters) $V_0, V_1, \ldots, V_k$. The cluster $V_0$ has only one vertex $0$ which represents the depot and the remaining $n$ nodes belong to the remaining $k$ clusters. These can represent geographically distrbuted customers or islands. Each customer has a demand and the demand of each cluster (denoted by $q$) is the total demand of customers in that cluster. The demand of each cluster can be satsfied via any of its vertices. There exist $m$ vehicles, each with capacity $Q$.
+The set of vertices $V$ is partitioned into $k + 1$ mutually exclusive subsets (clusters) $V_0, V_1, \ldots, V_k$. The cluster $V_0$ has only one vertex $0$ which represents the depot and the remaining $n$ nodes belong to the remaining $k$ clusters. These can represent geographically distributed customers or islands. Each customer has a demand and the demand of each cluster (denoted by $q$) is the total demand of customers in that cluster. The demand of each cluster can be satisfied via any of its vertices. There exist $m$ vehicles, each with capacity $Q$.
 
 The generalized vehicle routing problem (GVRP) consists in finding the minimum total cost tours starting and ending at the depot, such that each cluster should be visited exactly once, the entering and leaving nodes of each cluster is the same and the sum of all the demands of any tour (route) does not exceed the capacity of the vehicle $Q$. An example of a GVRP with a feasible tour is shown in Fig. \ref {fig:example_gvrp}.
 
@@ -199,8 +197,8 @@ The generalized vehicle routing problem (GVRP) consists in finding the minimum t
 
 
 \section{MILP formulations}
-The first mixed integer linear formulation of the GVRP was presented by \cite{bektasKara} . 
-
+The first mixed integer linear formulation of the GVRP was presented by \cite{bektasKara}, with a polynomially increasing number of binary variables and constraints. 
+\cite{POP201297} presented two different formulations based on additional auxiliary decision variables defined: \emph{node-based} and \emph{flow-based} formulation. The node-based formulation is structurally similar to the formulation by \cite{bektasKara}, but with stronger lower bounds. The flow-based formulation is completely new. In this section, a general semi-closed formulation for the GVRP is first presented and followed by the two formulations proposed by \cite{POP201297}.
 
 \subsection{General formulation}
 The related sets, decision variables and parameters for the GVRP are defined as follows:
@@ -285,246 +283,208 @@ We do not need to impose integrality constraints on $w_{pr}$ because Eqs. \eqref
 
 Model formulations of the GVRP are thus constrained by \eqref{cluster1} - \eqref{cluster6} and ``capacity bounding'' and ``subtour elimination'' constraints given in \eqref{capbound} and \eqref{subtour} above.
 
-\cite{POP201297} has presented two different formulations based on additional auxiliary decision variables defined: \emph{node-based} and \emph{flow-based} formulation.
 
 \subsection{Node-based formulation}
 In this case, the additional auxiliary variables are defined with respect to the vertices of the graph:
 
 $u_{p}$: the load of a vehicle just after leaving the cluster $V_p$, or delivered amount of goods just after leaving the cluster $V_p$, $p \ne 0$, $p \in K$.
 
+\subsubsection{Capacity bounding constraints}
+The capacity bounding constraints for the node-based formulation are given by:
+\begin{align}
+u_p - \sum_{r \in K, r \ne p}q_r w_{rp} \ge q_p, \; p \ne 0, p \in K \label{cbound1}\\
+u_p + (Q - q_p) w_{0p} \le Q, \; p \ne 0, p \in K \label{cbound2}\\
+u_p + \sum_{r \in K, r \ne p} q_r w_{pr} \le Q, p \ne 0, p \in K \label{cbound3}
+\end{align}•
 
-
-
-
-
-
-
-%%%%%
-\section{Test examples}
-
-Unfortunately, there is only one test problem for the GVRP given by \cite{GHIANI200011}. This problem (denoted by GVRP1), is originally a VRP taken from \cite{AraqueG1994} with 50 customers and 4 vehicles, with clustering defined by \cite{GHIANI200011}. Each customer has a unit demand and the demand of a cluster is equal to the cardinality of that cluster. 
-
-\subsection{Example 1}
-We use the method described above to solve a set of rate equations described by Seinfeld et al. \cite{seinfeld}:
+\subsubsection{Subtour elimination constraints}
+The formation of any subtour between clusters excluding $V_0$ will be prevented by the following constraint:
 \begin{equation}
-\begin{aligned}
-&\frac{dy_1}{dt} = - 0.04 y_1 + 10^4 y_2 y_3\\
-&\frac{dy_2}{dt} = 0.04 y_1 - 10^4 y_2 y_3 - 3 \cdot 10^7 y_2^2\\
-&\frac{dy_3}{dt} = 3\cdot 10^7 y_2^2\\
-&y_1(0) = 1, y_2(0) = 0, y_3(0) = 0
-\end{aligned}
-\end{equation}
-The analytical jacobian matrix for this system is given by:
-\begin{equation*}
-J =\begin{bmatrix}
-    -0.04 & 10^4 y_3 & 10^4 y_2  \\
-    0.04 & -10^4 y_3 - 6 \cdot 10^7 y_2 & -10^4 y_2 \\
-    0 & 6 \cdot 10^7 y_2  & 0
-\end{bmatrix}
-\end{equation*}
-The tolerance vector was taken as $\epsilon = [10^{-3},10^{-7},10^{-3}]$. The integration was carried out in the range [0,10] with an initial step size of $10^{-4}$. The same problem was also solved using \texttt{ode15s}, \texttt{ode23s} and \texttt{ode45}. 
+u_p - u_r + Q w_{pr} + (Q - q_p - q_r) w_{rp} \le Q - q_r, \;  p \ne r \ne 0; p, r \in K
+\label{subtour1}
+\end{equation}•
+where $w_{pr} = 0$, whenever $q_p + q_r > Q$ with $p \ne r$ and $p, r \in K$. 
 
-Table \ref{tab:ex1_solvers} shows the statistics involved in computing the solution for the algorithm under consideration and inbuilt MATLAB solvers.  All the three stiff solvers show markedly better performance across all parameters as compared to \texttt{ode45}. The performance of \texttt{ode\_Mic} with an analytical Jacobian is comparable to MATLAB's inbuilt stiff solvers. 
-Figure \ref{fig:ex1_solvers} shows the plot of $y_2$ vs time for stiff and non-stiff solutions. We see that the solution using \texttt{ode45} undergoes oscillations at higher time steps.
+Hence the complete node based formulation is given by replacing Eqs. \eqref{capbound} and \eqref{subtour} in the generalized formulation by  Eqs. \eqref{cbound1} - \eqref{cbound3} and Eq. \eqref{subtour1} respectively.
+%%%%%
+
+\subsection{Flow-based formulation}
+For the flow-based formulation, the additional auxiliary variables are defined with respect to the arcs of the graph:
+
+$y_{pr}$: the amount of goods picked up (or delivered in the case of delivery) on the route of a vehicle just after leaving the cluster $V_p$ if the vehicle goes from the cluster $V_p$ to the cluster $V_r$
+
+\subsubsection{Capacity bounding and subtour elimination constraints}
+Capacity bounding and subtour elimination constraints for the flow-based formulation are given by:
+
+\begin{align}
+&y_{rp} \le (Q - q_p) w_{rp}, \; r \ne p, r,p \in K \label{flow1} \\
+&y_{rp} \ge q_r w_{rp} \label{flow2} r \ne p, r, p \in K\\
+&\sum_{p=1^k} y_{p0} =  \sum_{p=1^k} q_p \label{flow3} \\
+&\sum_{p=0}^k y_{rp} - \sum_{p=0}^k y_{pr} = q_r, \; r \ne 0, r,p \in K \label{flow4}
+\end{align}
+where $y_{0p} = 0$ for all $p \in K$ and $q_0 = 0$.
+
+Hence the complete flow based formulation is given by replacing Eqs. \eqref{capbound} and \eqref{subtour} in the generalized formulation by  Eqs. \eqref{flow1} - \eqref{flow4}.
+
+
+\section{Test examples}
+\begin{table}[htbp]
+\centering
+\caption{Details of GVRPs under consideration}
+\label{tab:problemdetails}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+\textbf{Instance} & \textbf{Customers} & \textbf{Clusters} & \textbf{Vehicles} & \textbf{Capacity} & \textbf{\begin{tabular}[c]{@{}c@{}}Total\\   demand\end{tabular}} \\ \midrule
+\texttt{GVRP1}             & 50                 & 24                & 4                 & 15                & 50                                                                \\
+\texttt{GVRP2}             & 60                 & 16                & 6                 & 15                & 60                                                                \\
+\texttt{P-n50-k10}     & 49                 & 30                & 5                 & 200               & 951                                                               \\
+\texttt{A-n69-k9}      & 68                 & 31                & 6                 & 150               & 845                                                               \\
+\texttt{P-n76-k5}      & 75                 & 38                & 5                 & 280               & 1364                                                              \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Unfortunately, there are only two test problems for the GVRP. The first, given by \cite{GHIANI200011} (denoted in this study by \texttt{GVRP1}), is originally a VRP taken from \cite{AraqueG1994} with 50 customers and 4 vehicles. Each customer has a unit demand and the demand of a cluster is equal to the cardinality of that cluster.
+
+\cite{bektasKara} generated another test problem by clustering Problem 13 from \cite{AraqueG1994}. However, in the formulation under consideration in their work, an additional parameter $K$ is involved which is the minimum load of each vehicle when it returns to the depot (collection case) or minimum starting load of a vehicle just before starting its trip (delivery case). In this study, that parameter has not been considered while solving the instance. This particular problem is denoted by \texttt{GVRP2}. 
+
+\subsection{Generation of additional test examples}
+
+Three additional test examples were generated using capactitated vehicle routing problem (CVRP) data obtained from CVRPLIB (\url{http://vrp.atd-lab.inf.puc-rio.br}). Instances \texttt{P-n50-k10}, \texttt{A-n69-k9} and \texttt{P-n76-k5} were chosen. The clusters were obtained by implementation of a simple clustering algorithm (K-means), with the number of clusters chosen such that the number of customers in any cluster is no more than 5. The demand of each cluster was calculated by summing the demands of each customer in that cluster. 
+Details of each of the problems under consideration is given in Table \ref{tab:problemdetails}.
+
+\section{Computational study}
+
+Both node-based and flow-based formulations given by \cite{POP201297} were implemented in CPLEX and solved on a Windows PC with an Intel i7 processor (2.90 GHz). 
+
+\subsection{Tightness of root node relaxation}
+
+\begin{table}[htbp]
+\centering
+\caption{Deviation between root node relaxation and optimal values}
+\label{tab:rootnode}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+\textbf{Instance}              & \textbf{\begin{tabular}[c]{@{}c@{}}Best known\\  objective\end{tabular}} & \textbf{Formulation} & \textbf{\begin{tabular}[c]{@{}c@{}}Root node\\   relaxation\end{tabular}} & \textbf{\% Deviation} \\ \midrule
+\multirow{2}{*}{GVRP}          & \multirow{2}{*}{527.813}     & flow                 & 512.75                        & 2.85                  \\
+                               &                              & node                 & 464.701                       & 11.96                 \\ \midrule
+\multirow{2}{*}{GVRP2}         & \multirow{2}{*}{557.564}     & flow                 & 557.542                       & 0.00                  \\
+                               &                              & node                 & 557.564                       & 0.00                  \\ \midrule
+\multirow{2}{*}{P-n50-k10-c30} & \multirow{2}{*}{417.742}     & flow                 & 396.038                       & 5.20                  \\
+                               &                              & node                 & 343.825                       & 17.69                 \\ \midrule
+\multirow{2}{*}{A-n69-k9-c31}  & \multirow{2}{*}{756.131}     & flow                 & 717.343                       & 5.13                  \\
+                               &                              & node                 & 566.751                       & 25.05                 \\ \midrule
+\multirow{2}{*}{P-n76-k5-c38}  & \multirow{2}{*}{507.991}     & flow                 & 450.746                       & 11.27                 \\
+                               &                              & node                 & 399.48                        & 21.36                 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Table \ref{tab:rootnode} shows a comparision between the root node relaxations for the flow- and node-based formulations. In all the instances under consideration, the flow-based formulation shows a tighter LP lower bound. Thus we would expect the flow-based formulation to be more efficient than the node-based formulation. 
+
+This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based formulation finds a better objective value or closes the relative gap more than the node-based formulation. A one hour time limit for each problem was set for each of these calculations. Both formulations found the proven optimum within the time limit only for \texttt{GVRP2}. For \texttt{GVRP1}, only the flow-based formulation reached zero-gap within the time limit. In all the other instances, the realtive gap at time limit was significantly smaller for the flow-based formulation.
+
+\begin{table}[htbp]
+\centering
+\caption{Model comparision for GVRP instances (time limit = 1 hour)}
+\label{tab:compstudy}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+\textbf{Instance}              & \textbf{Formulation} & \textbf{Status} & \textbf{\begin{tabular}[c]{@{}c@{}}Objective\\   value\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Relative gap\\   (\%)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Number \\ of constraints\end{tabular}} \\ \midrule
+\multirow{2}{*}{\texttt{GVRP1}}         & flow                 & Optimal         & 527.813            & 0.01                       & 2108                 \\
+                               & node                 & Feasible        & 527.813            & 5.42                       & 1482                 \\ \midrule
+\multirow{2}{*}{\texttt{GVRP2}}         & flow                 & Optimal         & 557.564            & 0.00                       & 1242                 \\
+                               & node                 & Optimal         & 557.564            & 0.00                       & 952                  \\ \midrule
+\multirow{2}{*}{\texttt{P-n50-k10}} & flow                 & Feasible        & 417.742            & 0.75                       & 3094                 \\
+                               & node                 & Feasible        & 417.742            & 14.69                      & 2132                 \\ \midrule
+\multirow{2}{*}{\texttt{A-n69-k9}}  & flow                 & Feasible        & 756.131            & 1.25                       & 3385                 \\
+                               & node                 & Feasible        & 763.045            & 18.59                      & 2360                 \\ \midrule
+\multirow{2}{*}{\texttt{P-n76-k5}}  & flow                 & Feasible        & 508.194            & 6.04                       & 4896                 \\
+                               & node                 & Feasible        & 595.149            & 31.20                      & 3374                 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+\newpage
+%\nocite{*}  %% uncomment to include all references in bib file
+\bibliographystyle{ICTv3}
+\bibliography{Proposal_bib}
+
+\newpage
+
+\section*{Appendix}
+
+\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{figure}{0}
 
 \begin{figure}[htbp]
 \centering
-\subfloat[Stiff solver ({\texttt{ode\_Mic}}, \texttt{ode15s} or \texttt{ode23s})]{%
-\includegraphics[width=0.45\textwidth]{ode23s.eps}
+\subfloat[Customer clusters]{%
+\includegraphics[width=0.45\textwidth]{GVRP_map.png}
 \label{fig:plot_11}}
 \quad
-\subfloat[Non-stiff solver (\texttt{ode45})]{%
-\includegraphics[width=0.45\textwidth]{ode45.eps}
+\subfloat[Optimum solution (objective = 527.813)]{%
+\includegraphics[width=0.45\textwidth]{GVRP_flow_n51_k25_m4_Q15_TL60_map.png}
 \label{fig:plots_12}}
-\caption{Comparision of solutions for non-stiff vs. stiff solvers (Example 1)}
+\caption{\texttt{GVRP1}}
 \label{fig:ex1_solvers}
 \end{figure}
 
-
-\begin{table}[htbp]
-\centering
-\caption{Solver statistics for Michelsen's algorithm compared with inbuilt MATLAB solvers (Example 1)}
-\label{tab:ex1_solvers}
-\begin{tabular}{@{}llll@{}}
-\toprule
-                    & Running time (s)  & Function evaluations        & Steps \\ \midrule
-                    & \multicolumn{3}{c}{\texttt{ode\_Mic}} \\ \cmidrule(l){2-4} 
-Analytical Jacobian & 0.00963       & 168           & 29    \\
-Numerical Jacobian  & 0.14337       & 8960          & 29    \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode15s}}   \\ \cmidrule(l){2-4} 
-Analytical Jacobian & 0.03540      & 81            & 41    \\
-Numerical Jacobian  & 0.05238      & 89            & 41    \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode23s}}   \\ \cmidrule(l){2-4} 
-Analytical Jacobian & 0.00851      & 60            & 19    \\
-Numerical Jacobian  & 0.01168      & 115           & 19    \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode45}}    \\ \cmidrule(l){2-4} 
- 		       & 1.20454      & 52201  & 29109 \\ \bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Example 2}
-The second test example is a model for a fluid bed reactor \citep{AIC:AIC690200225}:
-\begin{equation}
-\begin{aligned}
-&\frac{dy_1}{dt} = 1.30 (y_3 - y_1) + 1.04 \cdot 10^4 k y_2\\
-&\frac{dy_2}{dt} = 1.88 \cdot 10^3 (y_4 - y_2 (1 + k))\\
-&\frac{dy_3}{dt} = 1752 + 266.7 y_1 - 269.3 y_3\\
-&\frac{dy_4}{dt} = 0.1 + 320 y_2 - 321 y_4\\
-&y_1(0) = 759.167, y_2(0) = 0, y_3(0) = 600, y_4(0) = 0.1
-\end{aligned}
-\end{equation}
-where $k = 0.0006 \exp{(20.7 - 15000/y_1)}$. 
-
-The tolerance vector was taken as $\epsilon = [1,1,0.1,0.1]$. The integration was carried out in the range [0,500] with an initial step size of $10^{-4}$. Similar to Example 1, the running time of \texttt{ode\_Mic} with a Numerical Jacobian was comparable to that of \texttt{ode15s} and \texttt{ode23s} (Table \ref{tab:ex2_solvers}). The performance of \texttt{ode45} is several orders of magnitude worse than the stiff solvers.
-
-\begin{table}[htbp]
-\centering
-\caption{Solver statistics for Michelsen's algorithm compared with inbuilt MATLAB solvers (Example 2)}
-\label{tab:ex2_solvers}
-\begin{tabular}{@{}llll@{}}
-\toprule
-                    & Running time (s)   & Function evaluations    & Steps    \\ \midrule
-                    & \multicolumn{3}{c}{\texttt{ode\_Mic}} \\ \cmidrule(l){2-4} 
-Analytical Jacobian  & 0.014103       & 252       & 43       \\
-Numerical Jacobian & 0.341434       & 16112     & 39       \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode15s}}   \\ \cmidrule(l){2-4} 
-Analytical Jacobian  & 0.190613       & 2354      & 764      \\
-Numerical Jacobian & 0.02084        & 126       & 85       \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode23s}}   \\ \cmidrule(l){2-4} 
-Analytical Jacobian  & 0.018893       & 341       & 114      \\
-Numerical Jacobian & 0.014007       & 331       & 48       \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode45}}    \\  \cmidrule(l){2-4} 
-	 	       & 55.881972      & 2123530   & 1327201  \\ \bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Example 3 - Oregonator reaction}
-The oscillatory reaction between \ce{H Br O2}, \ce{Br-} and Ce(IV) is known as the Oregonator reaction \citep{oregonator}. The rate expressions are given by:
-\begin{equation}
-\begin{aligned}
-&\frac{dy_1}{dt} = 77.27 (y_2 + y_1(1 - 8.375 \times 10^{-6} y_1 - y_2))\\
-&\frac{dy_2}{dt} = \frac{1}{77.27} (y_3 - (1 + y_1) y_2)\\
-&\frac{dy_3}{dt} = 0.161 (y_1 - y_3)\\
-&y_1(0) = 1, y_2(0) = 2, y_3(0) = 3
-\end{aligned}
-\end{equation}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.6\textwidth]{oregonator.eps}
-\caption{Oregonator reaction plot}
-\label{fig:ex3_solvers}
+\subfloat[Customer clusters]{%
+\includegraphics[width=0.45\textwidth]{GVRP2_map.png}
+\label{fig:plot_11}}
+\quad
+\subfloat[Best known solution (objective = 557.564)]{%
+\includegraphics[width=0.45\textwidth]{GVRP2_flow_n61_k17_m6_Q15_TL10_map.png}
+\label{fig:plots_12}}
+\caption{\texttt{GVRP2}}
+\label{fig:ex1_solvers}
 \end{figure}
-In this system, we observe that at smaller integration limits (e.g. [0,10]) the problem is non-stiff and both stiff and non-stiff solvers integrate the system effectively. However, at larger intervals (once oscillations start taking place), the stiff solvers show markedly better performance than \texttt{ode45} (Table \ref{tab:ex3_solvers}).
- 
-\begin{table}[htbp]
+
+\begin{figure}[htbp]
 \centering
-\caption{Solver statistics for Michelsen's algorithm compared with inbuilt MATLAB solvers (Example 3 - Oregonator reaction)}
-\label{tab:ex3_solvers}
-\begin{tabular}{llll}
-\hline
-                    & Running time  & Function evaluations    & Steps     \\ \hline
-                    & \multicolumn{3}{c}{\texttt{ode\_Mic}} \\ \cmidrule(l){2-4} 
-Analytical Jacobian & 0.15919      & 5538      & 923       \\
-Numerical Jacobian  & 4.46163      & 295203    & 923       \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode15s}}   \\ \cmidrule(l){2-4} 
-Analytical Jacobian & 0.11093      & 1566      & 583       \\
-Numerical Jacobian  & 0.11796      & 1845      & 583       \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode23s}}   \\ \cmidrule(l){2-4} 
-Analytical Jacobian & 0.06939      & 2142      & 709       \\
-Numerical Jacobian  & 0.14239       & 4266      & 709       \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode45}}    \\ \cmidrule(l){2-4} 
-		       & 584.78864     & 28648200  & 17905633  \\ \hline
-\end{tabular}
-\end{table}
+\subfloat[Customer clusters]{%
+\includegraphics[width=0.45\textwidth]{A-n69-k9-c31_map.png}
+\label{fig:plot_11}}
+\quad
+\subfloat[Best known solution (objective = 756.131)]{%
+\includegraphics[width=0.45\textwidth]{A-n69-k9-c31_flow_n69_k32_m6_Q150_TL60_map.png}
+\label{fig:plots_12}}
+\caption{\texttt{A-n69-k9} (clustered)}
+\label{fig:ex1_solvers}
+\end{figure}
 
-\newpage
-\subsection{Example 4 - Photochemical smog model}
-
-A kinetic model Photochemical smog formation presented by Gelinas \citep{GELINAS1972222} is solved. The original model given in ref.~\citep{GELINAS1972222} involves 29 species and over 60 equations with rate constants varying by 20 orders of magnitude. A simplified form of the model as described in ref. \citep{MICHELSEN1977107} with 12 species and 22 reactions is used and shown in Tables \ref{tab:smog_components} \& \ref{tab:smog}. 
-
-The system was solved using \texttt{ode\_Mic}, \texttt{ode15s}, \texttt{ode23s} and \texttt{ode45} for increasing integration limits. As expected  (especially for this large system), \texttt{ode45} is orders of magnitude worse than any of the stiff solvers for all integration limits. Interestingly, \texttt{ode45} varies as $\mathcal{O}(n)$  whereas \texttt{ode\_Mic} varies as $\mathcal{O}(n^{0.5})$ (where $n$ is max integration limit). 
-\begin{table}[H]
+\begin{figure}[htbp]
 \centering
-\caption{Components in the smog model}
-\label{tab:smog_components}
-\begin{tabular}{@{}lll@{}}
-\toprule
-1. \ce{NO2} & 2. \ce{NO}        & 3. \ce{O}        \\
-4. \ce{O3}  & 5. \ce{C4H8}      & 6. \ce{C3H7O2}   \\
-7. \ce{HO2} & 8. \ce{CH3CO3}    & 9. \ce{CH3O2}  \\
-10. \ce{HO} & 11. \ce{C4H8OHO2} & 12. \ce{CH2OHO2} \\ \bottomrule
-\end{tabular}
-\end{table}
+\subfloat[Customer clusters]{%
+\includegraphics[width=0.45\textwidth]{P-n50-k10-c30_map.png}
+\label{fig:plot_11}}
+\quad
+\subfloat[Best known solution (objective = 417.742)]{%
+\includegraphics[width=0.45\textwidth]{P-n50-k10-c30_flow_n50_k31_m5_Q200_optimum.png}
+\label{fig:plots_12}}
+\caption{\texttt{P-n50-k10} (clustered)}
+\label{fig:ex1_solvers}
+\end{figure}
 
-
-\begin{table}[H]
+\begin{figure}[htbp]
 \centering
-\caption{Photochemical smog model (Example 3) - Reactions and rate constants.}
-\label{tab:smog}
-\begin{tabular}{@{}ccccccccc@{}}
-\toprule
-1 &   &    & $\longrightarrow$ & 2        & +       & 3       &  & 6.7 $\times$ 10$^{-\text{3}}$   \\
-3 &   &    & $\longrightarrow$ & 4        &         &         &  & 6.73 $\times$ 10$^{\text{4}} $  \\
-2 & + & 4  & $\longrightarrow$ & 1        &         &         &  & 9.1  $\times$ 10$^{-\text{2}}$  \\
-3 & + & 5  & $\longrightarrow$ & 6        & +       & 7       &  & 3.8 $\times$ 10$^{\text{2}}  $   \\
-6 & + & 2  & $\longrightarrow$ & 1        & +       & 7       &  & 3.0       \\
-4 & + & 5  & $\longrightarrow$ & 7        & +       & 8       &  & 4.9 $\times$ 10$^{-\text{5}}$\\
-4 & + & 5  & $\longrightarrow$ & 4        &         &         &  & 2.1 $\times$ 10$^{-\text{5}}$\\
-2 & + & 8  & $\longrightarrow$ & 1        &    +    & 9       &  & 3.0        \\
-1 & + & 8  & $\longrightarrow$ & \multicolumn{3}{l}{inactive} &  & 0.1      \\
-5 & + & 8  & $\longrightarrow$ & 9        &         &         &  & 1.0 $\times$ 10$^{-\text{4}}  $\\
-2 & + & 9  & $\longrightarrow$ & 1        & +       & 7       &  & 3.0        \\
-5 & + & 10 & $\longrightarrow$ & 11       &         &         &  & 1.0 $\times$ 10$^{\text{2}}   $   \\
-2 & + & 11 & $\longrightarrow$ & 1        & +       & 12      &  & 3.0       \\
-2 & + & 12 & $\longrightarrow$ & 1        & +       & 10      &  & 3.0     \\
-2 & + & 7  & $\longrightarrow$ & 1        & +       & 10      &  & 50       \\
-7 & + & 7  & $\longrightarrow$ & \multicolumn{3}{l}{inactive} &  & 50       \\
-7 & + & 10 & $\longrightarrow$ & \multicolumn{3}{l}{inactive} &  & 50       \\
-7 & + & 6  & $\longrightarrow$ & \multicolumn{3}{l}{inactive} &  & 50       \\
-7 & + & 9  & $\longrightarrow$ & \multicolumn{3}{l}{inactive} &  & 50       \\
-7 & + & 8  & $\longrightarrow$ & \multicolumn{3}{l}{inactive} &  & 50       \\
-7 & + & 11 & $\longrightarrow$ & \multicolumn{3}{l}{inactive} &  & 50       \\
-7 & + & 12 & $\longrightarrow$ & \multicolumn{3}{l}{inactive} &  & 50       \\ \bottomrule
-\end{tabular}
-\end{table}
+\subfloat[Customer clusters]{%
+\includegraphics[width=0.45\textwidth]{P-n76-k5-c38_map.png}
+\label{fig:plot_11}}
+\quad
+\subfloat[Best known solution (objective = 507.991)]{%
+\includegraphics[width=0.45\textwidth]{P-n76-k5-c38_flow_n76_k39_m5_Q280_TL150_map.png}
+\label{fig:plots_12}}
+\caption{\texttt{P-n76-k5} (clustered)}
+\label{fig:ex1_solvers}
+\end{figure}
 
-\begin{table}[H]
-\centering
-\caption{Solver statistics for Michelsen's algorithm compared with inbuilt MATLAB solvers (Example 4 - smog model)}
-\label{tab:smog_stat}
-\begin{tabular}{@{}llll@{}}
-\toprule
-Time step (s) & Running time (s) & Function evaluations & Steps   \\ \midrule
-                    & \multicolumn{3}{c}{\texttt{ode\_Mic}} \\ \cmidrule(l){2-4} 
-1        & 1.010029     & 15072                & 13      \\
-10       & 3.025674     & 51496                & 42      \\
-100      & 8.835829     & 158262               & 126     \\
-1000     & 25.085625    & 456571               & 362     \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode15s}} \\ \cmidrule(l){2-4} 
-1        & 0.021004     & 61                   & 26      \\
-10       & 0.060441     & 146                  & 48      \\
-100      & 0.085993     & 233                  & 75      \\
-1000     & 0.034693     & 284                  & 94      \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode23s}} \\ \cmidrule(l){2-4} 
-1        & 0.083637     & 252                  & 17      \\
-10       & 0.057533     & 569                  & 38      \\
-100      & 0.081612     & 914                  & 61      \\
-1000     & 0.104977     & 1259                 & 84      \\ \cmidrule(l){2-4} 
-                    & \multicolumn{3}{c}{\texttt{ode45}} \\ \cmidrule(l){2-4} 
-1        & 6.104102     & 137725               & 86245   \\
-10       & 67.269395    & 1379530              & 862373  \\
-100      & 653.744277   & 13792100             & 8620221 \\ \bottomrule
-\end{tabular}
-\end{table}
-
-\section{Conclusion}
-
-The integration algorithm proposed by Michelsen was implemented and found to be well suited for a variety of stiff problems arising in chemical engineering. Using the analytical Jacobian improves performance in each of the stiff solvers used. In all these cases, an arbitrary initial step size was chosen. A more systematic method may improve performance by reducing the number of step length adjustments required for the first step.
-
-\newpage
-
-\nocite{*}  %% uncomment to include all references in bib file
-\bibliographystyle{ICTv3}
-\bibliography{Proposal_bib}
+%\begin{figure}[htbp]
+%\centering
+%\includegraphics[width=0.6\textwidth]{cok.pdf}
+%\caption{asfda}
+%\label{fig:w}
+%\end{figure}
 
 \end{document}
