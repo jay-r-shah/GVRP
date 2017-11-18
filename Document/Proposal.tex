@@ -177,16 +177,17 @@
 \endgroup
 
 \section{Introduction}
+The Generalized Vehicle Routing Problem (GVRP) is an extension of the Vehicle Routing Problem (VRP) defined on a graph in which the customers are grouped into a given number of mutually exclusive and exhaustive clusters. In this study, two MILP formulations of the GVRP described by \cite{POP201297} are implemented. The computational performance of the models solved using CPLEX on test problems is presented. New test problems are generated in addition to the ones available in literature by clustering test instances for the Capacitated VRP.
 
-Several real world situations can be modeled as a GVRP and its special cases. The post-box collection problem described in \citep{Laporte1996} becomes an asymmetric GVRP if one or more vehicles are used. The distribution of goods by sea in an archipelago as in Philippines, New Zealand, Italy, Greece etc. can also be modeled as a GVRP by selecting a number of potential harbors for each island and a fleet of ships is required to visit exactly one harbor for each island.
+%Several real world situations can be modeled as a GVRP and its special cases. The post-box collection problem described in \citep{Laporte1996} becomes an asymmetric GVRP if one or more vehicles are used. The distribution of goods by sea in an archipelago as in Philippines, New Zealand, Italy, Greece etc. can also be modeled as a GVRP by selecting a number of potential harbors for each island and a fleet of ships is required to visit exactly one harbor for each island.
 
-\section{Definition of the GVRP}
+\subsection{Definition of the GVRP}
 
 Let $G = (V,A)$ be a directed graph with $V = \{0,1,2,\ldots,n\}$ as the set of vertices and $A = \{(i,j)|i , j \in V , i \ne j\}$ as the set of arcs. A non-negative cost $c_{ij}$ is associated with each arc $(i,j) \in A$.
 
 The set of vertices $V$ is partitioned into $k + 1$ mutually exclusive subsets (clusters) $V_0, V_1, \ldots, V_k$. The cluster $V_0$ has only one vertex $0$ which represents the depot and the remaining $n$ nodes belong to the remaining $k$ clusters. These can represent geographically distributed customers or islands. Each customer has a demand and the demand of each cluster (denoted by $q$) is the total demand of customers in that cluster. The demand of each cluster can be satisfied via any of its vertices. There exist $m$ vehicles, each with capacity $Q$.
 
-The generalized vehicle routing problem (GVRP) consists in finding the minimum total cost tours starting and ending at the depot, such that each cluster should be visited exactly once, the entering and leaving nodes of each cluster is the same and the sum of all the demands of any tour (route) does not exceed the capacity of the vehicle $Q$. An example of a GVRP with a feasible tour is shown in Fig. \ref {fig:example_gvrp}.
+The generalized vehicle routing problem (GVRP) consists of finding the minimum total cost tours starting and ending at the depot, such that each cluster is visited exactly once, the entering and leaving node of each cluster is the same, and the sum of all the demands of any tour (route) does not exceed the capacity of the vehicle $Q$. An example of a GVRP with a feasible tour is shown in Fig. \ref {fig:example_gvrp}.
 
 \begin{figure}[htbp]
 \centering
@@ -197,19 +198,18 @@ The generalized vehicle routing problem (GVRP) consists in finding the minimum t
 
 
 \section{MILP formulations}
-The first mixed integer linear formulation of the GVRP was presented by \cite{bektasKara}, with a polynomially increasing number of binary variables and constraints. 
-\cite{POP201297} presented two different formulations based on additional auxiliary decision variables defined: \emph{node-based} and \emph{flow-based} formulation. The node-based formulation is structurally similar to the formulation by \cite{bektasKara}, but with stronger lower bounds. The flow-based formulation is completely new. In this section, a general semi-closed formulation for the GVRP is first presented and followed by the two formulations proposed by \cite{POP201297}.
+The first mixed integer linear formulation of the GVRP was presented by \cite{bektasKara}, with a polynomially increasing number of binary variables and constraints. \cite{POP201297} presented two different formulations based on the additional auxiliary decision variables. These are called \emph{node-based} and \emph{flow-based} formulations respectively. The node-based formulation is structurally similar to the formulation by \cite{bektasKara}, but with stronger lower bounds. The flow-based formulation is completely new. In this section, a general semi-closed formulation for the GVRP is first presented and followed by the two formulations proposed by \cite{POP201297}.
 
 \subsection{General formulation}
 The related sets, decision variables and parameters for the GVRP are defined as follows:
 
 \textit{Sets:}
 
-$V = \{0,1,2,\ldots,n\}$ the set of nodes corresponding to the customers, where 0 represents the depot. $V$ is partitioned into mutually exclusive and exhaustive non-empty sub-sets $V_0$, $V_1$, \ldots $V_k$, each of which represents a cluster of customers, where $V_0 = \{0\}$ is the depot.
+$V = \{0,1,2,\ldots,n\}$ is the set of nodes corresponding to the customers, where 0 represents the depot. $V$ is partitioned into mutually exclusive and exhaustive non-empty sub-sets $V_0$, $V_1$, \ldots $V_k$, each of which represents a cluster of customers, where $V_0 = \{0\}$ is the depot.
 
 $K = \{0,1,2,\ldots,k\}$ is the set of clusters.
 
-$A = \{(i,j)|i,j\in V, i\ne j\}$ is the set of arcs.
+$A = \{(i,j)|\; i,j\in V, i\ne j\}$ is the set of arcs.
 
 \textit{Decision variables:}
 
@@ -294,7 +294,7 @@ The capacity bounding constraints for the node-based formulation are given by:
 \begin{align}
 u_p - \sum_{r \in K, r \ne p}q_r w_{rp} \ge q_p, \; p \ne 0, p \in K \label{cbound1}\\
 u_p + (Q - q_p) w_{0p} \le Q, \; p \ne 0, p \in K \label{cbound2}\\
-u_p + \sum_{r \in K, r \ne p} q_r w_{pr} \le Q, p \ne 0, p \in K \label{cbound3}
+u_p + \sum_{r \in K, r \ne p} q_r w_{pr} \le Q, \; p \ne 0, p \in K \label{cbound3}
 \end{align}•
 
 \subsubsection{Subtour elimination constraints}
@@ -317,13 +317,12 @@ $y_{pr}$: the amount of goods picked up (or delivered in the case of delivery) o
 Capacity bounding and subtour elimination constraints for the flow-based formulation are given by:
 
 \begin{align}
-&y_{rp} \le (Q - q_p) w_{rp}, \; r \ne p, r,p \in K \label{flow1} \\
-&y_{rp} \ge q_r w_{rp} \label{flow2} r \ne p, r, p \in K\\
-&\sum_{p=1^k} y_{p0} =  \sum_{p=1^k} q_p \label{flow3} \\
-&\sum_{p=0}^k y_{rp} - \sum_{p=0}^k y_{pr} = q_r, \; r \ne 0, r,p \in K \label{flow4}
+&y_{rp} \le (Q - q_p) w_{rp}, \; r \ne p; r,p \in K \label{flow1} \\
+&y_{rp} \ge q_r w_{rp}, \;  r \ne p; r, p \in K \label{flow2}\\
+&\sum_{p=1}^k y_{p0} =  \sum_{p=1}^k q_p \label{flow3} \\
+&\sum_{p=0}^k y_{rp} - \sum_{p=0}^k y_{pr} = q_r, \; r \ne 0; r,p \in K \label{flow4}
 \end{align}
 where $y_{0p} = 0$ for all $p \in K$ and $q_0 = 0$.
-
 Hence the complete flow based formulation is given by replacing Eqs. \eqref{capbound} and \eqref{subtour} in the generalized formulation by  Eqs. \eqref{flow1} - \eqref{flow4}.
 
 
@@ -343,7 +342,7 @@ Hence the complete flow based formulation is given by replacing Eqs. \eqref{capb
 \end{tabular}
 \end{table}
 
-Unfortunately, there are only two test problems for the GVRP. The first, given by \cite{GHIANI200011} (denoted in this study by \texttt{GVRP1}), is originally a VRP taken from \cite{AraqueG1994} with 50 customers and 4 vehicles. Each customer has a unit demand and the demand of a cluster is equal to the cardinality of that cluster.
+Unfortunately, there are only two available test problems for the GVRP. The first, given by \cite{GHIANI200011} (denoted in this study by \texttt{GVRP1}), is originally a VRP taken from \cite{AraqueG1994} with 50 customers and 4 vehicles. Each customer has a unit demand and the demand of a cluster is equal to the cardinality of that cluster.
 
 \cite{bektasKara} generated another test problem by clustering Problem 13 from \cite{AraqueG1994}. However, in the formulation under consideration in their work, an additional parameter $K$ is involved which is the minimum load of each vehicle when it returns to the depot (collection case) or minimum starting load of a vehicle just before starting its trip (delivery case). In this study, that parameter has not been considered while solving the instance. This particular problem is denoted by \texttt{GVRP2}. 
 
@@ -354,7 +353,7 @@ Details of each of the problems under consideration is given in Table \ref{tab:p
 
 \section{Computational study}
 
-Both node-based and flow-based formulations given by \cite{POP201297} were implemented in CPLEX and solved on a Windows PC with an Intel i7 processor (2.90 GHz). 
+Both node-based and flow-based formulations given by \cite{POP201297} were implemented in CPLEX and solved using a Windows PC with an Intel i7 processor (2.90 GHz). 
 
 \subsection{Tightness of root node relaxation}
 
@@ -365,22 +364,22 @@ Both node-based and flow-based formulations given by \cite{POP201297} were imple
 \begin{tabular}{@{}ccccc@{}}
 \toprule
 \textbf{Instance}              & \textbf{\begin{tabular}[c]{@{}c@{}}Best known\\  objective\end{tabular}} & \textbf{Formulation} & \textbf{\begin{tabular}[c]{@{}c@{}}Root node\\   relaxation\end{tabular}} & \textbf{\% Deviation} \\ \midrule
-\multirow{2}{*}{GVRP}          & \multirow{2}{*}{527.813}     & flow                 & 512.75                        & 2.85                  \\
-                               &                              & node                 & 464.701                       & 11.96                 \\ \midrule
-\multirow{2}{*}{GVRP2}         & \multirow{2}{*}{557.564}     & flow                 & 557.542                       & 0.00                  \\
-                               &                              & node                 & 557.564                       & 0.00                  \\ \midrule
-\multirow{2}{*}{P-n50-k10-c30} & \multirow{2}{*}{417.742}     & flow                 & 396.038                       & 5.20                  \\
-                               &                              & node                 & 343.825                       & 17.69                 \\ \midrule
-\multirow{2}{*}{A-n69-k9-c31}  & \multirow{2}{*}{756.131}     & flow                 & 717.343                       & 5.13                  \\
-                               &                              & node                 & 566.751                       & 25.05                 \\ \midrule
-\multirow{2}{*}{P-n76-k5-c38}  & \multirow{2}{*}{507.991}     & flow                 & 450.746                       & 11.27                 \\
-                               &                              & node                 & 399.48                        & 21.36                 \\ \bottomrule
+\multirow{2}{*}{\texttt{GVRP}}          & \multirow{2}{*}{527.813}     & flow                 & 498.594                        & 5.54                  \\
+                               &                              & node                 & 449.358                       & 14.86                 \\ \midrule
+\multirow{2}{*}{\texttt{GVRP2}}         & \multirow{2}{*}{557.564}     & flow                 & 533.9                       & 4.24                  \\
+                               &                              & node                 & 545.365                       & 2.19                  \\ \midrule
+\multirow{2}{*}{\texttt{P-n50-k10}} & \multirow{2}{*}{417.742}     & flow                 & 384.597  & 7.93                  \\
+                               &                              & node                 & 338.098                       & 19.07	  \\ \midrule
+\multirow{2}{*}{\texttt{A-n69-k9}}  & \multirow{2}{*}{756.131}     & flow                 & 692.212 & 8.45                  \\
+                               &                              & node                 & 560.44                       & 25.88 \\ \midrule
+\multirow{2}{*}{\texttt{P-n76-k5}}  & \multirow{2}{*}{507.991}     & flow                 & 450.746                       & 11.27                 \\
+                               &                              & node                 & 399.788                        & 21.30                 \\ \bottomrule
 \end{tabular}
 \end{table}
 
-Table \ref{tab:rootnode} shows a comparision between the root node relaxations for the flow- and node-based formulations. In all the instances under consideration, the flow-based formulation shows a tighter LP lower bound. Thus we would expect the flow-based formulation to be more efficient than the node-based formulation. 
+Table \ref{tab:rootnode} shows a comparision between the root node relaxations for the flow- and node-based formulations. In all but one of the instances under consideration, the flow-based formulation shows a tighter LP lower bound. Thus we would expect the flow-based formulation to be more efficient than the node-based formulation. 
 
-This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based formulation finds a better objective value or closes the relative gap more than the node-based formulation. A one hour time limit for each problem was set for each of these calculations. Both formulations found the proven optimum within the time limit only for \texttt{GVRP2}. For \texttt{GVRP1}, only the flow-based formulation reached zero-gap within the time limit. In all the other instances, the realtive gap at time limit was significantly smaller for the flow-based formulation.
+This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based formulation finds a better objective value or closes the relative gap more than the node-based formulation. A one hour time limit for each problem was set for each of these calculations. Both formulations found the proven optimum within the time limit only for \texttt{GVRP2}. For \texttt{GVRP1}, only the flow-based formulation reached zero-gap within the one hour time limit. In all the other instances, the realtive gap at time limit was significantly smaller for the flow-based formulation.
 
 \begin{table}[htbp]
 \centering
@@ -402,19 +401,6 @@ This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based for
 \end{tabular}
 \end{table}
 
-
-\newpage
-%\nocite{*}  %% uncomment to include all references in bib file
-\bibliographystyle{ICTv3}
-\bibliography{Proposal_bib}
-
-\newpage
-
-\section*{Appendix}
-
-\renewcommand{\thefigure}{A\arabic{figure}}
-\setcounter{figure}{0}
-
 \begin{figure}[htbp]
 \centering
 \subfloat[Customer clusters]{%
@@ -425,7 +411,7 @@ This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based for
 \includegraphics[width=0.45\textwidth]{GVRP_flow_n51_k25_m4_Q15_TL60_map.png}
 \label{fig:plots_12}}
 \caption{\texttt{GVRP1}}
-\label{fig:ex1_solvers}
+\label{fig:GVRP1sol}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -434,11 +420,29 @@ This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based for
 \includegraphics[width=0.45\textwidth]{GVRP2_map.png}
 \label{fig:plot_11}}
 \quad
-\subfloat[Best known solution (objective = 557.564)]{%
+\subfloat[Optimal solution (objective = 557.564)]{%
 \includegraphics[width=0.45\textwidth]{GVRP2_flow_n61_k17_m6_Q15_TL10_map.png}
 \label{fig:plots_12}}
 \caption{\texttt{GVRP2}}
-\label{fig:ex1_solvers}
+\label{fig:GVRP2sol}
+\end{figure}
+
+
+The obtained objective value for \texttt{GVRP1} (Fig. \ref{fig:GVRP1sol}) is the same as the optimum reported by \cite{POP201297}. Since different constraints were used for \texttt{GVRP2}, the obtained solution does not match that reported by \cite{bektasKara}.
+
+Instances \texttt{P-n50-k10} and \texttt{A-n69-k9}, were solved to optimality with the flow-based formulation with objective values 417.742 and 756.131. The instances and obtained solutions are shown in Fig. \ref{fig:P-n50-k10-sol} and \ref{fig:A-n69-k9-sol} respectively. Instance \texttt{P-n76-k5} was solved to 4.6\% relative gap (terminated due to a memory limit). The solution is shown in Fig. \ref{fig:P-n76-k5-c38-sol }.
+
+\begin{figure}[htbp]
+\centering
+\subfloat[Customer clusters]{%
+\includegraphics[width=0.45\textwidth]{P-n50-k10-c30_map.png}
+\label{fig:plot_11}}
+\quad
+\subfloat[Optimal solution (objective = 417.742)]{%
+\includegraphics[width=0.45\textwidth]{P-n50-k10-c30_flow_n50_k31_m5_Q200_TL150_optimum.png}
+\label{fig:plots_12}}
+\caption{\texttt{P-n50-k10} (clustered)}
+\label{fig:P-n50-k10-sol}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -447,25 +451,19 @@ This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based for
 \includegraphics[width=0.45\textwidth]{A-n69-k9-c31_map.png}
 \label{fig:plot_11}}
 \quad
-\subfloat[Best known solution (objective = 756.131)]{%
-\includegraphics[width=0.45\textwidth]{A-n69-k9-c31_flow_n69_k32_m6_Q150_TL60_map.png}
+\subfloat[Optimal solution (objective = 756.131)]{%
+\includegraphics[width=0.45\textwidth]{A-n69-k9-c31_flow_n69_k32_m6_Q150_TL240_map.png}
 \label{fig:plots_12}}
 \caption{\texttt{A-n69-k9} (clustered)}
-\label{fig:ex1_solvers}
+\label{fig:A-n69-k9-sol}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\subfloat[Customer clusters]{%
-\includegraphics[width=0.45\textwidth]{P-n50-k10-c30_map.png}
-\label{fig:plot_11}}
-\quad
-\subfloat[Best known solution (objective = 417.742)]{%
-\includegraphics[width=0.45\textwidth]{P-n50-k10-c30_flow_n50_k31_m5_Q200_optimum.png}
-\label{fig:plots_12}}
-\caption{\texttt{P-n50-k10} (clustered)}
-\label{fig:ex1_solvers}
-\end{figure}
+\section{Conclusions}
+Two MILP formulations of the generalized vehicle routing problem (GVRP were studied). The number of variables and constraints is a polynomial function of the number of customers for both the formulations. 
+Two formulations were defined: the first had auxiliary variables defined based on the customers (node-based) where as the second had auxiliary variables defined based on arcs between customers (flow-based). 
+
+Three new instances were generated by clustering benchmark instances for the capacitated vehicle routing problem (CVRP). Computational studies were conducted to compare the node-based and flow-based formulations.
+The flow-based formulation was proved to have better computational properties as compared to the node-based formulation for all instances under consideration. Two of the new instances were solved to optimality using the superior flow-based formulation. 
 
 \begin{figure}[htbp]
 \centering
@@ -477,8 +475,21 @@ This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based for
 \includegraphics[width=0.45\textwidth]{P-n76-k5-c38_flow_n76_k39_m5_Q280_TL150_map.png}
 \label{fig:plots_12}}
 \caption{\texttt{P-n76-k5} (clustered)}
-\label{fig:ex1_solvers}
+\label{fig:P-n76-k5-c38-sol }
 \end{figure}
+
+\newpage
+%\nocite{*}  %% uncomment to include all references in bib file
+\bibliographystyle{ICTv3}
+\bibliography{Proposal_bib}
+
+\newpage
+
+%\section*{Appendix}
+%
+%\renewcommand{\thefigure}{A\arabic{figure}}
+%\setcounter{figure}{0}
+
 
 %\begin{figure}[htbp]
 %\centering
