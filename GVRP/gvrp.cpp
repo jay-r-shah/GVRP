@@ -9,10 +9,10 @@ int main(int argc, char **argv) {
 	IloEnv env;
 	using namespace std;
 	try {
-		std::vector<string> formulations = {"flow"};
-		float maxTime = 8*60*60; // time limit in seconds
+		std::vector<string> formulations = {"flow"}; // "node" or "flow" or both
+		float maxTime = 60*60; // time limit in seconds
 		float objLim = 0; // stop before this number is reached - keep at zero unless experimenting
-		vector<string> datafiles = {"P-n50-k10-c30"}; // list of datafiles to be solved;
+		vector<string> datafiles = {"P-n50-k10-c5","P-n50-k10-c10","P-n50-k10-c15","P-n50-k10-c20","P-n50-k10-c25","P-n50-k10-c30","P-n50-k10-c35","P-n50-k10-c40","P-n50-k10-c45","P-n50-k10-c49"}; // list of datafiles to be solved;
 		std::vector<IloInt> mlist = {5}; // corresponding Number of vehicles
 		std::vector<IloInt> Qlist = {200}; // Corresponding Vehicle max capacities 
 
@@ -22,8 +22,8 @@ int main(int argc, char **argv) {
 			for (int f = 0; f < datafiles.size(); ++f)
 			{
 				string filename = datafiles[f];
-				IloInt m = mlist[f];
-				IloInt Q = Qlist[f];
+				IloInt m = mlist[0];
+				IloInt Q = Qlist[0];
 				string filepath =  "../../data/" + filename + ".dat"; 
 				if (argc >= 2) filepath = argv[1];
 				ifstream file(filepath);

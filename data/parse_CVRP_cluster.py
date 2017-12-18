@@ -6,14 +6,12 @@ Created on Sat Nov  4 19:16:21 2017
 """
 
 from sklearn.cluster import KMeans
-import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-import sys
 import math
 
-N = 75
+N = 49
 
 def parseData(filename):
     nodes = [];
@@ -155,4 +153,4 @@ def createData(CVRPdatafile):
             ellipse1 = mpatches.Ellipse((x0,y0), xDist, yDist,np.rad2deg(angle),fill = False)
             ax.add_artist(ellipse1)
 
-createData('E-n76-k8.dat')
+createData('P-n50-k10.dat')

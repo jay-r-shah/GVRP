@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.8.10)  15 NOV 2017 00:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.8.10)  1 DEC 2017 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -354,8 +354,8 @@ Package color Info: Driver file: pdftex.def on input line 147.
 File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
 \Gread@gobject=\count132
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 23.
-Package hyperref Info: Option `breaklinks' set `true' on input line 23.
+Package hyperref Info: Option `colorlinks' set `true' on input line 24.
+Package hyperref Info: Option `breaklinks' set `true' on input line 24.
 
 (c:/texlive/2016/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (c:/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
@@ -1184,7 +1184,16 @@ LaTeX Warning: Label `fig:plots_12' multiply defined.
 LaTeX Warning: Label `sub@fig:plots_12' multiply defined.
 
 
-LaTeX Warning: Label `fig:ex1_solvers' multiply defined.
+LaTeX Warning: Label `fig:plot_11' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:plot_11' multiply defined.
+
+
+LaTeX Warning: Label `fig:plots_12' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:plots_12' multiply defined.
 
 
 LaTeX Warning: Label `fig:plot_11' multiply defined.
@@ -1199,9 +1208,6 @@ LaTeX Warning: Label `fig:plots_12' multiply defined.
 LaTeX Warning: Label `sub@fig:plots_12' multiply defined.
 
 
-LaTeX Warning: Label `fig:ex1_solvers' multiply defined.
-
-
 LaTeX Warning: Label `fig:plot_11' multiply defined.
 
 
@@ -1212,44 +1218,26 @@ LaTeX Warning: Label `fig:plots_12' multiply defined.
 
 
 LaTeX Warning: Label `sub@fig:plots_12' multiply defined.
-
-
-LaTeX Warning: Label `fig:ex1_solvers' multiply defined.
-
-
-LaTeX Warning: Label `fig:plot_11' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:plot_11' multiply defined.
-
-
-LaTeX Warning: Label `fig:plots_12' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:plots_12' multiply defined.
-
-
-LaTeX Warning: Label `fig:ex1_solvers' multiply defined.
 
 )
 \openout1 = `Proposal.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 168.
-LaTeX Font Info:    ... okay on input line 168.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 168.
-LaTeX Font Info:    ... okay on input line 168.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 168.
-LaTeX Font Info:    ... okay on input line 168.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 168.
-LaTeX Font Info:    ... okay on input line 168.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 168.
-LaTeX Font Info:    ... okay on input line 168.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 168.
-LaTeX Font Info:    ... okay on input line 168.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 168.
-LaTeX Font Info:    ... okay on input line 168.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 168.
-LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1286,7 +1274,7 @@ LaTeX Font Info:    ... okay on input line 168.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box67
-Package hyperref Info: Link coloring ON on input line 168.
+Package hyperref Info: Link coloring ON on input line 169.
 (c:/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -1295,9 +1283,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count318
 )
-LaTeX Info: Redefining \ref on input line 168.
-LaTeX Info: Redefining \pageref on input line 168.
-LaTeX Info: Redefining \nameref on input line 168.
+LaTeX Info: Redefining \ref on input line 169.
+LaTeX Info: Redefining \pageref on input line 169.
+LaTeX Info: Redefining \nameref on input line 169.
 
 (./Proposal.out) (./Proposal.out)
 \@outlinefile=\write5
@@ -1338,7 +1326,7 @@ ABD: EveryShipout initializing macros
 .................................................
 . chemgreek info: "mapping-activated"
 . 
-. Activating mapping `default' on line 168.
+. Activating mapping `default' on line 169.
 .................................................
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
@@ -1350,50 +1338,44 @@ Package xcolor Warning: Incompatible color definition on input line 181.
 
 Package xcolor Warning: Incompatible color definition on input line 181.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 185.
+LaTeX Font Info:    Try loading font information for U+msa on input line 187.
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 185.
+LaTeX Font Info:    Try loading font information for U+msb on input line 187.
 
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 185.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 187.
 
 (c:/texlive/2016/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Overfull \hbox (8.1792pt too wide) in paragraph at lines 187--188
+Overfull \hbox (8.1792pt too wide) in paragraph at lines 189--190
 []\OT1/cmr/m/n/12 The set of ver-tices $\OML/cmm/m/it/12 V$ \OT1/cmr/m/n/12 is 
 par-ti-tioned into $\OML/cmm/m/it/12 k \OT1/cmr/m/n/12 + 1$ mu-tu-ally ex-clu-s
 ive sub-sets (clus-ters) $\OML/cmm/m/it/12 V[]; V[]; [] ; V[]$\OT1/cmr/m/n/12 .
 
  []
 
-<example_gvrp.png, id=70, 504.38437pt x 462.22687pt>
+<example_gvrp.png, id=74, 504.38437pt x 462.22687pt>
 File: example_gvrp.png Graphic file (type png)
  <use example_gvrp.png>
-Package pdftex.def Info: example_gvrp.png used on input line 193.
+Package pdftex.def Info: example_gvrp.png used on input line 195.
 (pdftex.def)             Requested size: 281.85587pt x 258.29514pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 194.
+Package xcolor Warning: Incompatible color definition on input line 196.
 
 
-Package xcolor Warning: Incompatible color definition on input line 194.
+Package xcolor Warning: Incompatible color definition on input line 196.
 
 
-Package xcolor Warning: Incompatible color definition on input line 194.
+Package xcolor Warning: Incompatible color definition on input line 196.
 
 
-Package xcolor Warning: Incompatible color definition on input line 194.
-
-
-Package xcolor Warning: Incompatible color definition on input line 200.
-
-
-Package xcolor Warning: Incompatible color definition on input line 200.
+Package xcolor Warning: Incompatible color definition on input line 196.
 
 
 Package xcolor Warning: Incompatible color definition on input line 201.
@@ -1414,9 +1396,12 @@ Package xcolor Warning: Incompatible color definition on input line 201.
 Package xcolor Warning: Incompatible color definition on input line 201.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 201.
 
- [1
+
+Package xcolor Warning: Incompatible color definition on input line 201.
+
+[1
 
 {c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2 <./example_g
 vrp.png>]
@@ -1427,150 +1412,149 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ¢ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ¢ in font cmr12!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
 
-Package xcolor Warning: Incompatible color definition on input line 346.
+Package xcolor Warning: Incompatible color definition on input line 338.
 
 
-Package xcolor Warning: Incompatible color definition on input line 346.
+Package xcolor Warning: Incompatible color definition on input line 338.
 
 
-Package xcolor Warning: Incompatible color definition on input line 346.
+Package xcolor Warning: Incompatible color definition on input line 338.
 
 
-Package xcolor Warning: Incompatible color definition on input line 346.
+Package xcolor Warning: Incompatible color definition on input line 338.
 
 
-Package xcolor Warning: Incompatible color definition on input line 348.
+Package xcolor Warning: Incompatible color definition on input line 340.
 
 
-Package xcolor Warning: Incompatible color definition on input line 348.
+Package xcolor Warning: Incompatible color definition on input line 340.
 
 
-Package xcolor Warning: Incompatible color definition on input line 348.
+Package xcolor Warning: Incompatible color definition on input line 340.
 
 
-Package xcolor Warning: Incompatible color definition on input line 348.
+Package xcolor Warning: Incompatible color definition on input line 340.
 
 
-Package xcolor Warning: Incompatible color definition on input line 352.
+Package xcolor Warning: Incompatible color definition on input line 344.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6]
-
-Package xcolor Warning: Incompatible color definition on input line 357.
-
-
-Package xcolor Warning: Incompatible color definition on input line 357.
-
-[7] [8] (./Proposal.bbl) <GVRP_map.png, id=205, 566.5968pt x 421.575pt>
+[6] <GVRP_map.png, id=198, 566.5968pt x 421.575pt>
 File: GVRP_map.png Graphic file (type png)
-
-<use GVRP_map.png>
-Package pdftex.def Info: GVRP_map.png used on input line 420.
+ <use GVRP_map.png>
+Package pdftex.def Info: GVRP_map.png used on input line 401.
 (pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
 
-<GVRP_flow_n51_k25_m4_Q15_TL60_map.png, id=207, 566.5968pt x 421.575pt>
+<GVRP_flow_n51_k25_m4_Q15_TL60_map.png, id=200, 566.5968pt x 421.575pt>
 File: GVRP_flow_n51_k25_m4_Q15_TL60_map.png Graphic file (type png)
 
 <use GVRP_flow_n51_k25_m4_Q15_TL60_map.png>
 Package pdftex.def Info: GVRP_flow_n51_k25_m4_Q15_TL60_map.png used on input li
-ne 424.
+ne 405.
 (pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
 
-<GVRP2_map.png, id=208, 566.5968pt x 421.8159pt>
+<GVRP2_map.png, id=201, 566.5968pt x 421.8159pt>
 File: GVRP2_map.png Graphic file (type png)
  <use GVRP2_map.png>
-Package pdftex.def Info: GVRP2_map.png used on input line 433.
+Package pdftex.def Info: GVRP2_map.png used on input line 414.
 (pdftex.def)             Requested size: 211.38832pt x 157.36958pt.
 
-<GVRP2_flow_n61_k17_m6_Q15_TL10_map.png, id=209, 566.5968pt x 421.8159pt>
+<GVRP2_flow_n61_k17_m6_Q15_TL10_map.png, id=202, 566.5968pt x 421.8159pt>
 File: GVRP2_flow_n61_k17_m6_Q15_TL10_map.png Graphic file (type png)
 
 <use GVRP2_flow_n61_k17_m6_Q15_TL10_map.png>
 Package pdftex.def Info: GVRP2_flow_n61_k17_m6_Q15_TL10_map.png used on input l
-ine 437.
+ine 418.
 (pdftex.def)             Requested size: 211.38832pt x 157.36958pt.
 
-<A-n69-k9-c31_map.png, id=210, 566.5968pt x 421.575pt>
-File: A-n69-k9-c31_map.png Graphic file (type png)
 
-<use A-n69-k9-c31_map.png>
-Package pdftex.def Info: A-n69-k9-c31_map.png used on input line 446.
-(pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
+Package xcolor Warning: Incompatible color definition on input line 422.
 
-<A-n69-k9-c31_flow_n69_k32_m6_Q150_TL60_map.png, id=211, 566.5968pt x 421.575pt
->
-File: A-n69-k9-c31_flow_n69_k32_m6_Q150_TL60_map.png Graphic file (type png)
- <use A-n69-k9-c31_flow_n69_k32_m6_Q150_TL60_map.png>
-Package pdftex.def Info: A-n69-k9-c31_flow_n69_k32_m6_Q150_TL60_map.png used on
- input line 450.
-(pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
 
-<P-n50-k10-c30_map.png, id=212, 566.5968pt x 421.575pt>
+Package xcolor Warning: Incompatible color definition on input line 422.
+
+
+Package xcolor Warning: Incompatible color definition on input line 422.
+
+
+Package xcolor Warning: Incompatible color definition on input line 422.
+
+[7] [8 <./GVRP_map.png> <./GVRP_flow_n51_k25_m4_Q15_TL60_map.png>]
+<P-n50-k10-c30_map.png, id=229, 566.5968pt x 421.575pt>
 File: P-n50-k10-c30_map.png Graphic file (type png)
 
 <use P-n50-k10-c30_map.png>
-Package pdftex.def Info: P-n50-k10-c30_map.png used on input line 459.
+Package pdftex.def Info: P-n50-k10-c30_map.png used on input line 430.
 (pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
 
-<P-n50-k10-c30_flow_n50_k31_m5_Q200_optimum.png, id=213, 566.5968pt x 421.575pt
->
-File: P-n50-k10-c30_flow_n50_k31_m5_Q200_optimum.png Graphic file (type png)
- <use P-n50-k10-c30_flow_n50_k31_m5_Q200_optimum.png>
-Package pdftex.def Info: P-n50-k10-c30_flow_n50_k31_m5_Q200_optimum.png used on
- input line 463.
+<P-n50-k10-c30_flow_n50_k31_m5_Q200_TL150_optimum.png, id=230, 566.5968pt x 421
+.575pt>
+File: P-n50-k10-c30_flow_n50_k31_m5_Q200_TL150_optimum.png Graphic file (type p
+ng)
+ <use P-n50-k10-c30_flow_n50_k31_m5_Q200_TL150_optimum.png>
+Package pdftex.def Info: P-n50-k10-c30_flow_n50_k31_m5_Q200_TL150_optimum.png u
+sed on input line 434.
 (pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
 
-<P-n76-k5-c38_map.png, id=214, 566.5968pt x 421.575pt>
+<A-n69-k9-c31_map.png, id=231, 566.5968pt x 421.575pt>
+File: A-n69-k9-c31_map.png Graphic file (type png)
+
+<use A-n69-k9-c31_map.png>
+Package pdftex.def Info: A-n69-k9-c31_map.png used on input line 443.
+(pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
+
+<A-n69-k9-c31_flow_n69_k32_m6_Q150_TL240_map.png, id=232, 566.5968pt x 421.575p
+t>
+File: A-n69-k9-c31_flow_n69_k32_m6_Q150_TL240_map.png Graphic file (type png)
+ <use A-n69-k9-c31_flow_n69_k32_m6_Q150_TL240_map.png>
+Package pdftex.def Info: A-n69-k9-c31_flow_n69_k32_m6_Q150_TL240_map.png used o
+n input line 447.
+(pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
+ [9 <./GVRP2_map.png> <./GVRP2_flow_n61_k17_m6_Q15_TL10_map.png> <./P-n50-k10-c
+30_map.png> <./P-n50-k10-c30_flow_n50_k31_m5_Q200_TL150_optimum.png>]
+<P-n76-k5-c38_map.png, id=249, 566.5968pt x 421.575pt>
 File: P-n76-k5-c38_map.png Graphic file (type png)
 
 <use P-n76-k5-c38_map.png>
-Package pdftex.def Info: P-n76-k5-c38_map.png used on input line 472.
+Package pdftex.def Info: P-n76-k5-c38_map.png used on input line 463.
 (pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
 
-<P-n76-k5-c38_flow_n76_k39_m5_Q280_TL150_map.png, id=215, 566.5968pt x 421.575p
+<P-n76-k5-c38_flow_n76_k39_m5_Q280_TL480_map.png, id=250, 566.5968pt x 421.575p
 t>
-File: P-n76-k5-c38_flow_n76_k39_m5_Q280_TL150_map.png Graphic file (type png)
- <use P-n76-k5-c38_flow_n76_k39_m5_Q280_TL150_map.png>
-Package pdftex.def Info: P-n76-k5-c38_flow_n76_k39_m5_Q280_TL150_map.png used o
-n input line 476.
+File: P-n76-k5-c38_flow_n76_k39_m5_Q280_TL480_map.png Graphic file (type png)
+ <use P-n76-k5-c38_flow_n76_k39_m5_Q280_TL480_map.png>
+Package pdftex.def Info: P-n76-k5-c38_flow_n76_k39_m5_Q280_TL480_map.png used o
+n input line 467.
 (pdftex.def)             Requested size: 211.38832pt x 157.27971pt.
- [9 <./GVRP_map.png> <./GVRP_flow_n51_k25_m4_Q15_TL60_map.png>] [10 <./GVRP2_ma
-p.png> <./GVRP2_flow_n61_k17_m6_Q15_TL10_map.png> <./A-n69-k9-c31_map.png> <./A
--n69-k9-c31_flow_n69_k32_m6_Q150_TL60_map.png> <./P-n50-k10-c30_map.png> <./P-n
-50-k10-c30_flow_n50_k31_m5_Q200_optimum.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 488.
- [11 <./P-n76-k5-c38_map.png> <./P-n76-k5-c38_flow_n76_k39_m5_Q280_TL150_map.pn
-g>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 488.
+ [10 <./A-n69-k9-c31_map.png> <./A-n69-k9-c31_flow_n69_k32_m6_Q150_TL240_map.pn
+g> <./P-n76-k5-c38_map.png> <./P-n76-k5-c38_flow_n76_k39_m5_Q280_TL480_map.png>
+] (./Proposal.bbl)
+[11]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 492.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 492.
  (./Proposal.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 488.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 488.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 492.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 492.
 Package rerunfilecheck Info: File `Proposal.out' has not changed.
-(rerunfilecheck)             Checksum: 093A8A2E6E7C3610348C465DDB8D71C8;1109.
+(rerunfilecheck)             Checksum: B7CDA6DF0E4603CD1A56FDC82E2609F8;1170.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 488.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 492.
  ) 
 Here is how much of TeX's memory you used:
- 29771 strings out of 493013
- 566505 string characters out of 6136993
- 918493 words of memory out of 5000000
- 32779 multiletter control sequences out of 15000+600000
+ 29773 strings out of 493013
+ 566558 string characters out of 6136993
+ 924766 words of memory out of 5000000
+ 32781 multiletter control sequences out of 15000+600000
  11315 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,19n,67p,10460b,410s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,19n,67p,10460b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2016
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/texmf-di
@@ -1583,10 +1567,10 @@ live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2016
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2016/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2016/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Proposal.pdf (11 pages, 3546715 bytes).
+Output written on Proposal.pdf (11 pages, 3555193 bytes).
 PDF statistics:
- 314 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
+ 327 PDF objects out of 1000 (max. 8388607)
+ 261 compressed objects within 3 object streams
  67 named destinations out of 1000 (max. 500000)
- 188 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 196 words of extra memory for PDF output out of 10000 (max. 10000000)
 

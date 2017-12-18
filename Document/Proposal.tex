@@ -13,7 +13,8 @@
 \usepackage{verbatim}
 \usepackage{titlesec}
 % \usepackage{xcolor}
-\usepackage{hyperref}
+\usepackage[	pdfauthor={Jay R. Shah},
+			pdftitle={Node-based and flow-based formulations for the Generalized Vehicle Routing Problem}]{hyperref}
 \usepackage{color}
  \definecolor{darkblue}{rgb}{0.0,0.0,0.3}
  \definecolor{lighterblue}{rgb}{0.0,0.0,0.6}
@@ -196,7 +197,6 @@ The generalized vehicle routing problem (GVRP) consists of finding the minimum t
 \label{fig:example_gvrp}
 \end{figure}
 
-
 \section{MILP formulations}
 The first mixed integer linear formulation of the GVRP was presented by \cite{bektasKara}, with a polynomially increasing number of binary variables and constraints. \cite{POP201297} presented two different formulations based on the additional auxiliary decision variables. These are called \emph{node-based} and \emph{flow-based} formulations respectively. The node-based formulation is structurally similar to the formulation by \cite{bektasKara}, but with stronger lower bounds. The flow-based formulation is completely new. In this section, a general semi-closed formulation for the GVRP is first presented and followed by the two formulations proposed by \cite{POP201297}.
 
@@ -226,7 +226,6 @@ We define the following binary variables:
     0,              & \text{otherwise}
 \end{cases}
 \end{flalign*}
-
 
 \textit{Parameters:}
 
@@ -279,10 +278,9 @@ With the above definitions and constraints, a general integer programming formul
 		  &x_{i,j} \in \{0,1\}, \forall (i,j) \in A \nonumber
 \end{flalign}
 
-We do not need to impose integrality constraints on $w_{pr}$ because Eqs. \eqref{cluster1} - \eqref{cluster4} and \eqref{cluster6} automatically imply that $w_{pr}$ is either $0$ or $1$.
+Integrality constraints do not need to be imposed on $w_{pr}$ because Eqs. \eqref{cluster1} - \eqref{cluster4} and \eqref{cluster6} automatically imply that $w_{pr}$ is either $0$ or $1$.
 
 Model formulations of the GVRP are thus constrained by \eqref{cluster1} - \eqref{cluster6} and ``capacity bounding'' and ``subtour elimination'' constraints given in \eqref{capbound} and \eqref{subtour} above.
-
 
 \subsection{Node-based formulation}
 In this case, the additional auxiliary variables are defined with respect to the vertices of the graph:
@@ -295,8 +293,7 @@ The capacity bounding constraints for the node-based formulation are given by:
 u_p - \sum_{r \in K, r \ne p}q_r w_{rp} \ge q_p, \; p \ne 0, p \in K \label{cbound1}\\
 u_p + (Q - q_p) w_{0p} \le Q, \; p \ne 0, p \in K \label{cbound2}\\
 u_p + \sum_{r \in K, r \ne p} q_r w_{pr} \le Q, \; p \ne 0, p \in K \label{cbound3}
-\end{align}•
-
+\end{align}
 \subsubsection{Subtour elimination constraints}
 The formation of any subtour between clusters excluding $V_0$ will be prevented by the following constraint:
 \begin{equation}
@@ -311,11 +308,9 @@ Hence the complete node based formulation is given by replacing Eqs. \eqref{capb
 \subsection{Flow-based formulation}
 For the flow-based formulation, the additional auxiliary variables are defined with respect to the arcs of the graph:
 
-$y_{pr}$: the amount of goods picked up (or delivered in the case of delivery) on the route of a vehicle just after leaving the cluster $V_p$ if the vehicle goes from the cluster $V_p$ to the cluster $V_r$
-
+$y_{pr}$: amount of goods picked up (or delivered in the case of delivery) on the route of a vehicle just after leaving the cluster $V_p$ if the vehicle goes from the cluster $V_p$ to the cluster $V_r$.
 \subsubsection{Capacity bounding and subtour elimination constraints}
 Capacity bounding and subtour elimination constraints for the flow-based formulation are given by:
-
 \begin{align}
 &y_{rp} \le (Q - q_p) w_{rp}, \; r \ne p; r,p \in K \label{flow1} \\
 &y_{rp} \ge q_r w_{rp}, \;  r \ne p; r, p \in K \label{flow2}\\
@@ -324,8 +319,6 @@ Capacity bounding and subtour elimination constraints for the flow-based formula
 \end{align}
 where $y_{0p} = 0$ for all $p \in K$ and $q_0 = 0$.
 Hence the complete flow based formulation is given by replacing Eqs. \eqref{capbound} and \eqref{subtour} in the generalized formulation by  Eqs. \eqref{flow1} - \eqref{flow4}.
-
-
 \section{Test examples}
 \begin{table}[htbp]
 \centering
@@ -353,7 +346,7 @@ Details of each of the problems under consideration is given in Table \ref{tab:p
 
 \section{Computational study}
 
-Both node-based and flow-based formulations given by \cite{POP201297} were implemented in CPLEX and solved using a Windows PC with an Intel i7 processor (2.90 GHz). 
+Both node-based and flow-based formulations described above were implemented in CPLEX and solved using a Windows PC with an Intel i7 processor (2.90 GHz). 
 
 \subsection{Tightness of root node relaxation}
 
@@ -364,7 +357,7 @@ Both node-based and flow-based formulations given by \cite{POP201297} were imple
 \begin{tabular}{@{}ccccc@{}}
 \toprule
 \textbf{Instance}              & \textbf{\begin{tabular}[c]{@{}c@{}}Best known\\  objective\end{tabular}} & \textbf{Formulation} & \textbf{\begin{tabular}[c]{@{}c@{}}Root node\\   relaxation\end{tabular}} & \textbf{\% Deviation} \\ \midrule
-\multirow{2}{*}{\texttt{GVRP}}          & \multirow{2}{*}{527.813}     & flow                 & 498.594                        & 5.54                  \\
+\multirow{2}{*}{\texttt{GVRP1}}          & \multirow{2}{*}{527.813}     & flow                 & 498.594                        & 5.54                  \\
                                &                              & node                 & 449.358                       & 14.86                 \\ \midrule
 \multirow{2}{*}{\texttt{GVRP2}}         & \multirow{2}{*}{557.564}     & flow                 & 533.9                       & 4.24                  \\
                                &                              & node                 & 545.365                       & 2.19                  \\ \midrule
@@ -372,14 +365,14 @@ Both node-based and flow-based formulations given by \cite{POP201297} were imple
                                &                              & node                 & 338.098                       & 19.07	  \\ \midrule
 \multirow{2}{*}{\texttt{A-n69-k9}}  & \multirow{2}{*}{756.131}     & flow                 & 692.212 & 8.45                  \\
                                &                              & node                 & 560.44                       & 25.88 \\ \midrule
-\multirow{2}{*}{\texttt{P-n76-k5}}  & \multirow{2}{*}{507.991}     & flow                 & 450.746                       & 11.27                 \\
+\multirow{2}{*}{\texttt{P-n76-k5}}  & \multirow{2}{*}{500.955}     & flow                 & 450.746                       & 11.27                 \\
                                &                              & node                 & 399.788                        & 21.30                 \\ \bottomrule
 \end{tabular}
 \end{table}
 
 Table \ref{tab:rootnode} shows a comparision between the root node relaxations for the flow- and node-based formulations. In all but one of the instances under consideration, the flow-based formulation shows a tighter LP lower bound. Thus we would expect the flow-based formulation to be more efficient than the node-based formulation. 
 
-This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based formulation finds a better objective value or closes the relative gap more than the node-based formulation. A one hour time limit for each problem was set for each of these calculations. Both formulations found the proven optimum within the time limit only for \texttt{GVRP2}. For \texttt{GVRP1}, only the flow-based formulation reached zero-gap within the one hour time limit. In all the other instances, the realtive gap at time limit was significantly smaller for the flow-based formulation.
+This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based formulation finds a better objective value or closes the relative gap more than the node-based formulation. A one hour time limit for each problem was set for each of these calculations. Both formulations found the proven optimum within the time limit only for \texttt{GVRP2}. For \texttt{GVRP1}, only the flow-based formulation reached zero gap in 85 seconds. In all the other instances, the realtive gap at time limit was significantly smaller for the flow-based formulation.
 
 \begin{table}[htbp]
 \centering
@@ -426,11 +419,9 @@ This is indeed the case as seen in Table \ref{tab:compstudy}: the flow-based for
 \caption{\texttt{GVRP2}}
 \label{fig:GVRP2sol}
 \end{figure}
-
-
 The obtained objective value for \texttt{GVRP1} (Fig. \ref{fig:GVRP1sol}) is the same as the optimum reported by \cite{POP201297}. Since different constraints were used for \texttt{GVRP2}, the obtained solution does not match that reported by \cite{bektasKara}.
 
-Instances \texttt{P-n50-k10} and \texttt{A-n69-k9}, were solved to optimality with the flow-based formulation with objective values 417.742 and 756.131. The instances and obtained solutions are shown in Fig. \ref{fig:P-n50-k10-sol} and \ref{fig:A-n69-k9-sol} respectively. Instance \texttt{P-n76-k5} was solved to 4.6\% relative gap (terminated due to a memory limit). The solution is shown in Fig. \ref{fig:P-n76-k5-c38-sol }.
+Instances \texttt{P-n50-k10} and \texttt{A-n69-k9}, were solved to optimality with the flow-based formulation in 4100 s and 9120 s respectively. The instances and obtained solutions are shown in Fig. \ref{fig:P-n50-k10-sol} and \ref{fig:A-n69-k9-sol} respectively. Instance \texttt{P-n76-k5} was solved to 2.55\% relative gap with an 8 hour time limit. The solution is shown in Fig. \ref{fig:P-n76-k5-c38-sol }.
 
 \begin{figure}[htbp]
 \centering
@@ -459,7 +450,7 @@ Instances \texttt{P-n50-k10} and \texttt{A-n69-k9}, were solved to optimality wi
 \end{figure}
 
 \section{Conclusions}
-Two MILP formulations of the generalized vehicle routing problem (GVRP were studied). The number of variables and constraints is a polynomial function of the number of customers for both the formulations. 
+Two MILP formulations of the generalized vehicle routing problem (GVRP) were studied. The number of variables and constraints is a polynomial function of the number of customers for both the formulations. 
 Two formulations were defined: the first had auxiliary variables defined based on the customers (node-based) where as the second had auxiliary variables defined based on arcs between customers (flow-based). 
 
 Three new instances were generated by clustering benchmark instances for the capacitated vehicle routing problem (CVRP). Computational studies were conducted to compare the node-based and flow-based formulations.
@@ -471,8 +462,8 @@ The flow-based formulation was proved to have better computational properties as
 \includegraphics[width=0.45\textwidth]{P-n76-k5-c38_map.png}
 \label{fig:plot_11}}
 \quad
-\subfloat[Best known solution (objective = 507.991)]{%
-\includegraphics[width=0.45\textwidth]{P-n76-k5-c38_flow_n76_k39_m5_Q280_TL150_map.png}
+\subfloat[Best known solution (objective = 500.955)]{%
+\includegraphics[width=0.45\textwidth]{P-n76-k5-c38_flow_n76_k39_m5_Q280_TL480_map.png}
 \label{fig:plots_12}}
 \caption{\texttt{P-n76-k5} (clustered)}
 \label{fig:P-n76-k5-c38-sol }

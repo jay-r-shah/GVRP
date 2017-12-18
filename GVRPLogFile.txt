@@ -132,3 +132,22 @@ node GVRP2 STATUS Feasible OBJ 557.564 RUNTIME 6.77824 RELGAP 0.0364518 nCust 61
 flow GVRP2 STATUS Feasible OBJ 557.564 RUNTIME 8.31095 RELGAP 0.0430457 nCust 61 nClusters 17 nVehicles 6 vehicleCap 15 nRows 1242 TIMELIM 10 OBJLIM 0 RelaxationVal 533.563
 node GVRP2 STATUS Feasible OBJ 557.564 RUNTIME 8.48255 RELGAP 0.0210524 nCust 61 nClusters 17 nVehicles 6 vehicleCap 15 nRows 952 TIMELIM 10 OBJLIM 0 RelaxationVal 545.826
 flow P-n76-k5-c38 STATUS Feasible OBJ 500.955 RUNTIME 24724.5 RELGAP 0.0255172 nCust 76 nClusters 39 nVehicles 5 vehicleCap 280 nRows 4896 TIMELIM 28800 OBJLIM 0 RelaxationVal 488.172
+flow P-n50-k10-c30 STATUS Optimal OBJ 417.742 RUNTIME 3935.02 RELGAP 9.98544e-05 nCust 50 nClusters 31 nVehicles 5 vehicleCap 200 nRows 3094 TIMELIM 28800 OBJLIM 0 RelaxationVal 417.7
+flow GVRP STATUS Optimal OBJ 527.813 RUNTIME 72.0959 RELGAP 9.96822e-05 nCust 51 nClusters 25 nVehicles 4 vehicleCap 15 nRows 2108 TIMELIM 28800 OBJLIM 0 RelaxationVal 527.76
+flow GVRP STATUS Optimal OBJ 527.813 RUNTIME 71.8385 RELGAP 9.96822e-05 nCust 51 nClusters 25 nVehicles 4 vehicleCap 15 nRows 2108 TIMELIM 28800 OBJLIM 0 RelaxationVal 527.76
+flow A-n69-k9 STATUS Infeasible RUNTIME 0 nCust 0 nClusters 0 nVehicles 6 vehicleCap 150 nRows 4 TIMELIM 28800 OBJLIM 00 RelaxationVal inf
+flow A-n69-k9-c31 STATUS Optimal OBJ 756.131 RUNTIME 8397.98 RELGAP 9.95049e-05 nCust 69 nClusters 32 nVehicles 6 vehicleCap 150 nRows 3385 TIMELIM 28800 OBJLIM 0 RelaxationVal 756.056
+flow P-n50-k10-c5 STATUS Infeasible RUNTIME 0 nCust 50 nClusters 6 nVehicles 5 vehicleCap 200 nRows 698 TIMELIM 28800 OBJLIM 00 RelaxationVal 0
+flow P-n50-k10-c10 STATUS Infeasible RUNTIME 0.0507003 nCust 50 nClusters 11 nVehicles 5 vehicleCap 200 nRows 735 TIMELIM 28800 OBJLIM 00 RelaxationVal 1e+75
+flow P-n50-k10-c15 STATUS Optimal OBJ 342.932 RUNTIME 19280 RELGAP 9.9967e-05 nCust 50 nClusters 16 nVehicles 5 vehicleCap 200 nRows 1029 TIMELIM 28800 OBJLIM 0 RelaxationVal 342.897
+flow P-n50-k10-c20 STATUS Optimal OBJ 366.081 RUNTIME 871.453 RELGAP 9.8669e-05 nCust 50 nClusters 21 nVehicles 5 vehicleCap 200 nRows 1568 TIMELIM 28800 OBJLIM 0 RelaxationVal 366.045
+flow P-n50-k10-c5 STATUS Infeasible RUNTIME 0.00780005 nCust 50 nClusters 6 nVehicles 5 vehicleCap 200 nRows 698 TIMELIM 3600 OBJLIM 00 RelaxationVal 0
+flow P-n50-k10-c10 STATUS Infeasible RUNTIME 0.0468003 nCust 50 nClusters 11 nVehicles 5 vehicleCap 200 nRows 735 TIMELIM 3600 OBJLIM 00 RelaxationVal 1e+75
+flow P-n50-k10-c15 STATUS Feasible OBJ 343.129 RUNTIME 3565.99 RELGAP 0.0683391 nCust 50 nClusters 16 nVehicles 5 vehicleCap 200 nRows 1029 TIMELIM 3600 OBJLIM 0 RelaxationVal 319.68
+flow P-n50-k10-c20 STATUS Optimal OBJ 366.081 RUNTIME 891.479 RELGAP 9.8669e-05 nCust 50 nClusters 21 nVehicles 5 vehicleCap 200 nRows 1568 TIMELIM 3600 OBJLIM 0 RelaxationVal 366.045
+flow P-n50-k10-c25 STATUS Feasible OBJ 400.958 RUNTIME 3277.58 RELGAP 0.0299895 nCust 50 nClusters 26 nVehicles 5 vehicleCap 200 nRows 2247 TIMELIM 3600 OBJLIM 0 RelaxationVal 388.934
+flow P-n50-k10-c30 STATUS Feasible OBJ 417.742 RUNTIME 2536.3 RELGAP 0.0136128 nCust 50 nClusters 31 nVehicles 5 vehicleCap 200 nRows 3094 TIMELIM 3600 OBJLIM 0 RelaxationVal 412.055
+flow P-n50-k10-c35 STATUS Optimal OBJ 439.257 RUNTIME 1557.65 RELGAP 9.90286e-05 nCust 50 nClusters 36 nVehicles 5 vehicleCap 200 nRows 4093 TIMELIM 3600 OBJLIM 0 RelaxationVal 439.214
+flow P-n50-k10-c40 STATUS Feasible OBJ 459.282 RUNTIME 2122.28 RELGAP 0.014551 nCust 50 nClusters 41 nVehicles 5 vehicleCap 200 nRows 5246 TIMELIM 3600 OBJLIM 0 RelaxationVal 452.599
+flow P-n50-k10-c45 STATUS Optimal OBJ 478.749 RUNTIME 1812.17 RELGAP 9.99974e-05 nCust 50 nClusters 46 nVehicles 5 vehicleCap 200 nRows 6549 TIMELIM 3600 OBJLIM 0 RelaxationVal 478.701
+flow P-n50-k10-c49 STATUS Feasible OBJ 491.406 RUNTIME 2024.82 RELGAP 0.00839444 nCust 50 nClusters 50 nVehicles 5 vehicleCap 200 nRows 7701 TIMELIM 3600 OBJLIM 0 RelaxationVal 487.281

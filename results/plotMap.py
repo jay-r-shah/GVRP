@@ -52,11 +52,10 @@ def plotCoords(solFileName):
     ax = fig.add_subplot(111)
     for i in range(len(xy)):
         ax.plot(xy[i,0],xy[i,1],"*b")
-        # ax.text(xy[i,0]+1,xy[i,1]-1,str(i)) # Uncomment if you want customer labels
+        ax.text(xy[i,0]+1,xy[i,1]-1,str(i)) # Uncomment if you want customer labels
     clusters = np.array(data[1])
     depot = [xy[clusters[0],0],xy[clusters[0],1]]
     ax.add_patch(mpatches.Rectangle((depot[0] - 3, depot[1] -3), 6, 6, fill=False))
-
     for cluster in clusters[1:]:
         if len(cluster) == 1:
             circle1 = plt.Circle((xy[cluster[0],0],xy[cluster[0],1]), 3, fill = False)

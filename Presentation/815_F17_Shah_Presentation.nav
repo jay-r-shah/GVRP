@@ -1,0 +1,63 @@
+\beamer@endinputifotherversion {3.36pt}
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\sectionentry {1}{Problem definition}{3}{Problem definition}{0}}
+\headcommand {\beamer@sectionpages {1}{2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\sectionentry {2}{Solving the GVRP}{4}{Solving the GVRP}{0}}
+\headcommand {\beamer@sectionpages {3}{3}}
+\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{4}{General formulation}}\headcommand {\beamer@subsectionpages {4}{3}}
+\headcommand {\slideentry {2}{1}{1}{4/4}{General formulation}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\slideentry {2}{1}{2}{5/5}{General formulation}{0}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\slideentry {2}{1}{3}{6/6}{General formulation}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{7}{Node-based MILP formulation}}\headcommand {\beamer@subsectionpages {4}{6}}
+\headcommand {\slideentry {2}{2}{1}{7/7}{Node-based MILP formulation}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{8}{Flow-based MILP formulation}}\headcommand {\beamer@subsectionpages {7}{7}}
+\headcommand {\slideentry {2}{3}{1}{8/8}{Flow-based MILP formulation}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\sectionentry {3}{Test examples}{9}{Test examples}{0}}
+\headcommand {\beamer@sectionpages {4}{8}}
+\headcommand {\beamer@subsectionpages {8}{8}}
+\headcommand {\slideentry {3}{0}{1}{9/9}{}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{10}{New test examples}}\headcommand {\beamer@subsectionpages {9}{9}}
+\headcommand {\slideentry {3}{1}{1}{10/10}{New test examples}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\sectionentry {4}{Computational study}{11}{Computational study}{0}}
+\headcommand {\beamer@sectionpages {9}{10}}
+\headcommand {\beamer@subsectionpages {10}{10}}
+\headcommand {\slideentry {4}{0}{1}{11/11}{}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\slideentry {4}{0}{2}{12/12}{}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{13}{Root node relaxation}}\headcommand {\beamer@subsectionpages {11}{12}}
+\headcommand {\slideentry {4}{1}{1}{13/13}{Root node relaxation}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{14}{Model comparision}}\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\slideentry {4}{2}{1}{14/14}{Model comparision}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\beamer@subsectionentry {0}{4}{3}{15}{Outcomes}}\headcommand {\beamer@subsectionpages {14}{14}}
+\headcommand {\slideentry {4}{3}{1}{15/15}{Outcomes}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\slideentry {4}{3}{2}{16/16}{Outcomes}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\slideentry {4}{3}{3}{17/17}{Outcomes}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\slideentry {4}{3}{4}{18/18}{Outcomes}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\slideentry {4}{3}{5}{19/19}{Outcomes}{0}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\beamer@partpages {1}{19}}
+\headcommand {\beamer@subsectionpages {15}{19}}
+\headcommand {\beamer@sectionpages {11}{19}}
+\headcommand {\beamer@documentpages {19}}
+\headcommand {\def \inserttotalframenumber {15}}

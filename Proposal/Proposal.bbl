@@ -1,0 +1,51 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\astroncite{Dantzig and Ramser}{1959}]{dantzig}
+Dantzig, G.~B. and Ramser, J.~H.
+\newblock The Truck Dispatching Problem.
+\newblock {\em Management Science}, 6(1):80--91 (1959).
+
+\bibitem[\protect\astroncite{Ghiani and Improta}{2000}]{GHIANI200011}
+Ghiani, G. and Improta, G.
+\newblock An efficient transformation of the generalized vehicle routing
+  problem.
+\newblock {\em European Journal of Operational Research}, 122(1):11 -- 17
+  (2000).
+
+\bibitem[\protect\astroncite{Gorissen et~al.}{2015}]{gorissen}
+Gorissen, B.~L., Yanikoglu, I., and den Hertog, D.
+\newblock A practical guide to robust optimization.
+\newblock {\em Omega}, 53(Supplement C):124 -- 137 (2015).
+
+\bibitem[\protect\astroncite{Kara and Bekta\c{s}}{2003}]{bektasKara}
+Kara, I. and Bekta\c{s}, T.
+\newblock New mathematical models of the generalized vehicle routing problem
+  and extensions.
+\newblock {\em Proc. of the 5th EURO/INFORMS Joint International Meeting}
+  (2003).
+
+\bibitem[\protect\astroncite{Laporte and Palekar}{2002}]{laporteandpalekar}
+Laporte, G. and Palekar, U.
+\newblock Some Applications of the Clustered Travelling Salesman Problem.
+\newblock {\em The Journal of the Operational Research Society}, 53(9):972--976
+  (2002).
+
+\bibitem[\protect\astroncite{Noon and Bean}{1991}]{Noon}
+Noon, C.~E. and Bean, J.~C.
+\newblock A Lagrangian Based Approach for the Asymmetric Generalized Traveling
+  Salesman Problem.
+\newblock {\em Operations Research}, 39(4):623--632 (1991).
+
+\bibitem[\protect\astroncite{Pop et~al.}{2012}]{POP201297}
+Pop, P.~C., Kara, I., and Marc, A.~H.
+\newblock New mathematical models of the generalized vehicle routing problem
+  and extensions.
+\newblock {\em Applied Mathematical Modelling}, 36(1):97 -- 107 (2012).
+
+\bibitem[\protect\astroncite{Pop et~al.}{2009}]{doi:10.1063/1.3130618}
+Pop, P.~C., Pintea, C., Zelina, I., and Dumitrescu, D.
+\newblock Solving the Generalized Vehicle Routing Problem with an ACS-based
+  Algorithm.
+\newblock {\em AIP Conference Proceedings}, 1117(1):157--162 (2009).
+
+\end{thebibliography}

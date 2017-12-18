@@ -1,15 +1,16 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Definition of the GVRP}{}% 2
-\BOOKMARK [1][-]{section.3}{MILP formulations}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{General formulation}{section.3}% 4
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Cluster degree constraints}{subsection.3.1}% 5
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Cluster connectivity constraints}{subsection.3.1}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Node-based formulation}{section.3}% 7
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Capacity bounding constraints}{subsection.3.2}% 8
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Subtour elimination constraints}{subsection.3.2}% 9
-\BOOKMARK [2][-]{subsection.3.3}{Flow-based formulation}{section.3}% 10
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Capacity bounding and subtour elimination constraints}{subsection.3.3}% 11
-\BOOKMARK [1][-]{section.4}{Test examples}{}% 12
-\BOOKMARK [2][-]{subsection.4.1}{Generation of additional test examples}{section.4}% 13
-\BOOKMARK [1][-]{section.5}{Computational study}{}% 14
-\BOOKMARK [2][-]{subsection.5.1}{Tightness of root node relaxation}{section.5}% 15
+\BOOKMARK [2][-]{subsection.1.1}{Definition of the GVRP}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{MILP formulations}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{General formulation}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Cluster degree constraints}{subsection.2.1}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Cluster connectivity constraints}{subsection.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.2}{Node-based formulation}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Capacity bounding constraints}{subsection.2.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Subtour elimination constraints}{subsection.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Flow-based formulation}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Capacity bounding and subtour elimination constraints}{subsection.2.3}% 11
+\BOOKMARK [1][-]{section.3}{Test examples}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Generation of additional test examples}{section.3}% 13
+\BOOKMARK [1][-]{section.4}{Computational study}{}% 14
+\BOOKMARK [2][-]{subsection.4.1}{Tightness of root node relaxation}{section.4}% 15
+\BOOKMARK [1][-]{section.5}{Conclusions}{}% 16

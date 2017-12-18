@@ -1,0 +1,24 @@
+Sol GVRP with 60 customers, 16 clusters and 4 vehicles
+0 21 
+0 29 
+0 30 
+0 43 
+4 17 
+12 36 
+17 0 
+18 12 
+21 50 
+29 18 
+30 54 
+33 35 
+35 59 
+36 0 
+40 0 
+41 40 
+43 33 
+50 4 
+54 41 
+59 0 
+Cost 558.576
+Gap 0.0922088
+DataFile GVRP2

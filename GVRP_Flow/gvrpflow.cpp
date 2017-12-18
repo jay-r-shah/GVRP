@@ -7,13 +7,13 @@ bool checkExistence(IloNumArray array, int val);
 int main(int argc, char **argv) {
 	IloEnv env;
 	try {
-		IloInt m = 6; // Number of vehicles
-		IloInt Q = 150; // Max capacity of each vehicle
-		string formulation = "flow";
-		float maxTime = 4*60*60;
-		float objLim = 0;
+		IloInt m = 8; // Number of vehicles
+		IloInt Q = 180; // Max capacity of each vehicle
+		string formulation = "flow"; // NOT a variable
+		float maxTime = 10*60; // seconds
+		float objLim = 0; // stop before this number is reached
 
-		string filename = "A-n65-k9-c28";
+		string filename = "E-n76-k8-c37";
 		string filepath =  "../../data/" + filename + ".dat"; 
 		if (argc >= 2) filepath = argv[1];
 		ifstream file(filepath);
@@ -321,6 +321,7 @@ int main(int argc, char **argv) {
 			}
 		}
 		fout << "Cost " << cplex.getObjValue() << endl;
+		fout << "Gap " << cplex.getMIPRelativeGap() << endl;
 		fout << "DataFile " << filename;
 		fout.close();
 

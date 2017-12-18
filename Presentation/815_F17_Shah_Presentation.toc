@@ -1,0 +1,12 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Problem definition}{3}{0}{1}
+\beamer@sectionintoc {2}{Solving the GVRP}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{General formulation}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Node-based MILP formulation}{7}{0}{2}
+\beamer@subsectionintoc {2}{3}{Flow-based MILP formulation}{8}{0}{2}
+\beamer@sectionintoc {3}{Test examples}{9}{0}{3}
+\beamer@subsectionintoc {3}{1}{New test examples}{10}{0}{3}
+\beamer@sectionintoc {4}{Computational study}{11}{0}{4}
+\beamer@subsectionintoc {4}{1}{Root node relaxation}{13}{0}{4}
+\beamer@subsectionintoc {4}{2}{Model comparision}{14}{0}{4}
+\beamer@subsectionintoc {4}{3}{Outcomes}{15}{0}{4}
